@@ -1,6 +1,6 @@
 <script lang="ts">
-    import '@skeletonlabs/skeleton/themes/theme-modern.css';
-    import '@skeletonlabs/skeleton/styles/skeleton.css';
+    // CSS imports for theme and skeleton base styles are removed from here.
+    // They are now handled by src/app.css
 
     // Floating UI
     import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
@@ -10,8 +10,8 @@
     import { onMount } from 'svelte';
     import { supabase } from '$lib/supabaseClient';
     import type { Session } from '@supabase/supabase-js';
-    import { invalidateAll } from '$app/navigation'; // To refresh layout data
-    import SvelteToast from '$lib/components/SvelteToast.svelte'; // You'll create this simple wrapper
+    import { invalidateAll } from '$app/navigation'; 
+    import SvelteToast from '$lib/components/SvelteToast.svelte';
 
     let session: Session | null = null;
 
@@ -22,8 +22,6 @@
 
         const { data: authListener } = supabase.auth.onAuthStateChange((event, newSession) => {
             session = newSession;
-            // When auth state changes, invalidate all load functions to re-run them
-            // This ensures protected routes redirect correctly after login/logout
             invalidateAll(); 
         });
 
@@ -36,7 +34,7 @@
 <!-- Skeleton Toasts and Modals -->
 <Toast position="tr" />
 <Modal />
-<SvelteToast /> <!-- Custom toast component for simpler notifications -->
+<SvelteToast />
 
 
 <nav class="p-4 bg-surface-100-800-token">

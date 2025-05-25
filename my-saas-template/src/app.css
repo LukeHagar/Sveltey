@@ -1,0 +1,16 @@
+/* Tailwind base, components, and utilities */
+@import 'tailwindcss';
+
+/* Skeleton core and base theme system */
+@import '@skeletonlabs/skeleton';
+
+/* Optional: Skeleton presets (recommended by v3 docs) */
+@import '@skeletonlabs/skeleton/optional/presets';
+
+/* Skeleton chosen theme (e.g., modern) */
+@import '@skeletonlabs/skeleton/themes/theme-modern.css';
+/* You can switch 'theme-modern.css' to other available themes like 'theme-cerberus.css', etc. */
+
+/* Your own global styles can go here */
+
+/* The @source line from docs is a comment, so it's omitted here */
