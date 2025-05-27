@@ -1,11 +1,12 @@
 @import 'tailwindcss';
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton/optional/presets';
+
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
 @source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
 
-@import '@skeletonlabs/skeleton';
-@import '@skeletonlabs/skeleton/optional/presets';
 
 /* Skeleton UI Themes */
 @import '@skeletonlabs/skeleton/themes/catppuccin';
