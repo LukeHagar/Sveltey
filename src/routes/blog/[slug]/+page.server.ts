@@ -1,11 +1,10 @@
 // src/routes/blog/[slug]/+page.server.ts
-import { getAllPosts } from '$lib/blog';
+import { getAllPosts, getPostBySlug } from '$lib/blog';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {
 	// Get only the metadata for the post
-	const posts = await getAllPosts();
-	const post = posts.find(p => p.slug === params.slug);
+	const post = await getPostBySlug(params.slug);
 	
 	if (!post) {
 		throw error(404, 'Blog post not found');
