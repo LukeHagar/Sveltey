@@ -1,5 +1,5 @@
 // src/routes/blog/[slug]/+page.server.ts
-import { getAllPosts, getPostBySlug } from '$lib/blog';
+import { getPostBySlug } from '$lib/blog';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params }) => {

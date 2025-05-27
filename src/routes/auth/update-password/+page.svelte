@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { supabase } from '$lib/supabaseClient';
     import { goto } from '$app/navigation';
     import { toaster } from '$lib';
-    import { Lock, Save, Eye, EyeOff, KeyRound } from 'lucide-svelte';
+    import { supabase } from '$lib/supabaseClient';
+    import { Eye, EyeOff, KeyRound, Lock, Save } from '@lucide/svelte';
+    import type { Session } from '@supabase/supabase-js';
     import { onMount } from 'svelte';
 
     let password = $state('');
@@ -10,7 +11,7 @@
     let loading = $state(false);
     let showPassword = $state(false);
     let showConfirmPassword = $state(false);
-    let session = $state(null);
+    let session = $state<Session | null>(null);
 
     onMount(async () => {
         // Check if user is authenticated (came from reset link)
@@ -63,7 +64,7 @@
                 description: 'Your password has been successfully updated.'
             });
             
-            goto('/dashboard');
+            goto('/app/dashboard');
         } catch (error: any) {
             toaster.create({
                 type: 'error',

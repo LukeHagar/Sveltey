@@ -1,7 +1,7 @@
 <script lang="ts">
     import { supabase } from '$lib/supabaseClient';
     import { toaster } from '$lib';
-    import { Mail, Send, ArrowLeft, KeyRound } from 'lucide-svelte';
+    import { Mail, Send, ArrowLeft, KeyRound } from '@lucide/svelte';
 
     let email = $state('');
     let loading = $state(false);

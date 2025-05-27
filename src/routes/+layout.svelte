@@ -3,7 +3,7 @@
 	import { toaster } from '$lib';
 	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
 	import { Avatar, Modal, Toaster } from '@skeletonlabs/skeleton-svelte';
-	import { BookOpen, DollarSign, Home, LayoutDashboard, LogOut, User } from 'lucide-svelte';
+	import { BookOpen, DollarSign, Home, LayoutDashboard, LogOut, User } from '@lucide/svelte';
 	import 'prism-themes/themes/prism-vsc-dark-plus.css';
 	import { onMount } from 'svelte';
 	import '../app.css';

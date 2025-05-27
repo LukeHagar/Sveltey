@@ -1,13 +1,8 @@
 <script lang="ts">
     // Icons
-    import { Rocket, Database, Zap, Star, Users, GitBranch } from 'lucide-svelte';
-    
-    interface Props {
-        // Props are passed from the root +layout.svelte
-        data: any; // Contains session from +layout.server.ts, then updated by +layout.svelte
-    }
+    import { Rocket, Database, Zap, Star, Users, GitBranch } from '@lucide/svelte';
 
-    let { data }: Props = $props();
+    let { data } = $props();
 </script>
 
 <div class="container mx-auto py-20 space-y-20">

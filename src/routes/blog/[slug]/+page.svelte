@@ -2,13 +2,9 @@
     import type { PageData } from './$types';
     import type { BlogPost } from '$lib/blog';
     import { onMount } from 'svelte';
-    import { Calendar, User, Tag, Share2, ArrowLeft, Star, Twitter, Linkedin } from 'lucide-svelte';
+    import { Calendar, User, Tag, Share2, ArrowLeft, Star, Twitter, Linkedin } from '@lucide/svelte';
 
-    interface Props {
-        data: PageData & { post: BlogPost; slug: string };
-    }
-
-    let { data }: Props = $props();
+    let { data } = $props();
     let post = $derived(data.post);
     let component: any = $state(null);
     let loading = $state(true);

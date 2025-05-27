@@ -1,13 +1,7 @@
 <script lang="ts">
-    import type { PageData } from './$types';
-    import type { BlogPost } from '$lib/blog';
-    import { Calendar, User, Tag, BookOpen, Star } from 'lucide-svelte';
-    
-    interface Props {
-        data: PageData & { posts: BlogPost[] };
-    }
+    import { Calendar, User, Tag, BookOpen, Star } from '@lucide/svelte';
 
-    let { data }: Props = $props();
+    let { data } = $props();
     
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {

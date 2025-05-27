@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Mail, Phone, MapPin, Send, MessageCircle, Clock } from 'lucide-svelte';
+    import { Mail, Phone, MapPin, Send, MessageCircle, Clock } from '@lucide/svelte';
     import { toaster } from '$lib';
 
     let formData = $state({

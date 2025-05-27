@@ -2,8 +2,7 @@
     import { supabase } from '$lib/supabaseClient';
     import { goto } from '$app/navigation';
     import { toaster } from '$lib';
-    import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff } from 'lucide-svelte';
-    import { page } from '$app/stores';
+    import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff } from '@lucide/svelte';
     import { onMount } from 'svelte';
 
     let activeTab = $state('login'); // 'login' or 'signup'

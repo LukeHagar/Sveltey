@@ -1,6 +1,6 @@
 <script lang="ts">
     // Icons
-    import { Check, X, Star, Zap, Crown, Mail } from 'lucide-svelte';
+    import { Check, X, Star, Zap, Crown, Mail } from '@lucide/svelte';
     
     interface Props {
         // Assuming session might be useful here, though not directly used in this basic structure
