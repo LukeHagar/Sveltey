@@ -1,0 +1,218 @@
+<script lang="ts">
+    import type { PageData } from './$types';
+    import type { BlogPost } from '$lib/blog';
+    import { onMount } from 'svelte';
+    import { Calendar, User, Tag, Share2, ArrowLeft, Star, Twitter, Linkedin } from 'lucide-svelte';
+
+    interface Props {
+        data: PageData & { post: BlogPost; slug: string };
+    }
+
+    let { data }: Props = $props();
+    let post = $derived(data.post);
+    let component: any = $state(null);
+    let loading = $state(true);
+    let error = $state(false);
+    
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
+
+    onMount(async () => {
+        try {
+            // Dynamically import the markdown component
+            const module = await import(`../../../lib/posts/${data.slug}.md`);
+            component = module.default;
+        } catch (err) {
+            console.error('Failed to load blog post component:', err);
+            error = true;
+        } finally {
+            loading = false;
+        }
+    });
+</script>
+
+<svelte:head>
+    <title>{post.title} | Blog</title>
+    <meta name="description" content={post.excerpt} />
+    <meta property="og:title" content={post.title} />
+    <meta property="og:description" content={post.excerpt} />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content={post.publishedAt} />
+    <meta property="article:author" content={post.author} />
+    {#each post.tags as tag}
+        <meta property="article:tag" content={tag} />
+    {/each}
+</svelte:head>
+
+<div class="container mx-auto py-20 space-y-12 max-w-4xl">
+    <!-- Breadcrumb Navigation -->
+    <nav class="flex items-center gap-2 text-sm">
+        <a href="/" class="hover:text-primary-500 transition-colors">Home</a>
+        <span class="opacity-50">/</span>
+        <a href="/blog" class="hover:text-primary-500 transition-colors">Blog</a>
+        <span class="opacity-50">/</span>
+        <span class="opacity-75">{post.title}</span>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="space-y-8">
+        <!-- Featured Badge & Meta Info -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                {#if post.featured}
+                    <span class="badge preset-filled-primary-500 flex items-center gap-1">
+                        <Star class="size-3" />
+                        Featured
+                    </span>
+                {/if}
+                <div class="flex items-center gap-1 text-sm opacity-75">
+                    <Calendar class="size-4" />
+                    {formatDate(post.publishedAt)}
+                </div>
+            </div>
+            
+            <!-- Back to Blog -->
+            <a href="/blog" class="btn preset-outlined-surface-200-800 flex items-center gap-2">
+                <ArrowLeft class="size-4" />
+                <span>Back to Blog</span>
+            </a>
+        </div>
+
+        <!-- Title and Excerpt -->
+        <div class="space-y-4">
+            <h1 class="h1">{post.title}</h1>
+            <p class="text-xl opacity-75 leading-relaxed">{post.excerpt}</p>
+        </div>
+
+        <!-- Author and Tags -->
+        <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <User class="size-5 text-primary-500" />
+                    <span class="font-medium">{post.author}</span>
+                </div>
+                
+                <!-- Share Buttons -->
+                <div class="flex items-center gap-2">
+                    <Share2 class="size-4 opacity-50" />
+                    <span class="text-sm opacity-75 mr-2">Share:</span>
+                    <a 
+                        href="https://twitter.com/intent/tweet?text={encodeURIComponent(post.title)}&url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="btn btn-sm preset-outlined-surface-200-800"
+                        title="Share on Twitter"
+                    >
+                        <Twitter class="size-4" />
+                    </a>
+                    <a 
+                        href="https://www.linkedin.com/sharing/share-offsite/?url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="btn btn-sm preset-outlined-surface-200-800"
+                        title="Share on LinkedIn"
+                    >
+                        <Linkedin class="size-4" />
+                    </a>
+                </div>
+            </div>
+            
+            {#if post.tags.length > 0}
+                <div class="flex items-center gap-2 flex-wrap">
+                    <Tag class="size-4 text-primary-500" />
+                    <span class="text-sm font-medium">Tags:</span>
+                    {#each post.tags as tag}
+                        <span class="badge preset-outlined-surface-200-800 text-xs flex items-center gap-1">
+                            {tag}
+                        </span>
+                    {/each}
+                </div>
+            {/if}
+        </div>
+    </header>
+
+    <hr class="hr" />
+
+    <!-- Article Content -->
+    <article class="prose dark:prose-invert prose-lg max-w-none">
+        {#if loading}
+            <div class="card preset-outlined-surface-200-800 p-8 text-center space-y-4">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto"></div>
+                <span class="text-sm opacity-75">Loading article content...</span>
+            </div>
+        {:else if error}
+            <div class="card preset-outlined-error-500 p-8 text-center space-y-4">
+                <p class="text-error-600 dark:text-error-400">Failed to load blog post content.</p>
+                <a href="/blog" class="btn preset-filled-primary-500">
+                    <ArrowLeft class="size-4" />
+                    Return to Blog
+                </a>
+            </div>
+        {:else if component}
+            <div class="prose dark:prose-invert prose-lg max-w-none prose-headings:text-primary-500 prose-links:text-primary-500 prose-code:text-primary-500">
+                {@render component()}
+            </div>
+        {:else}
+            <div class="card preset-outlined-surface-200-800 p-8 text-center">
+                <p class="opacity-75">Content not available.</p>
+            </div>
+        {/if}
+    </article>
+
+    <hr class="hr" />
+
+    <!-- Article Footer -->
+    <footer class="space-y-8">
+        <!-- Navigation -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <a href="/blog" class="btn preset-filled-primary-500 flex items-center gap-2">
+                <ArrowLeft class="size-4" />
+                <span>More Articles</span>
+            </a>
+            
+            <!-- Share Section (Repeated for convenience) -->
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-medium opacity-75">Share this article:</span>
+                <a 
+                    href="https://twitter.com/intent/tweet?text={encodeURIComponent(post.title)}&url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn btn-sm preset-outlined-surface-200-800"
+                >
+                    <Twitter class="size-4" />
+                    <span>Twitter</span>
+                </a>
+                <a 
+                    href="https://www.linkedin.com/sharing/share-offsite/?url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn btn-sm preset-outlined-surface-200-800"
+                >
+                    <Linkedin class="size-4" />
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="card preset-outlined-primary-500 p-8 text-center space-y-4">
+            <h3 class="h3 text-primary-500">Ready to get started?</h3>
+            <p class="opacity-75">
+                Start building your SaaS with our comprehensive template and join thousands of developers.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/auth/signup" class="btn preset-filled-primary-500">
+                    Get Started Free
+                </a>
+                <a href="/pricing" class="btn preset-outlined-surface-200-800">
+                    View Pricing
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>

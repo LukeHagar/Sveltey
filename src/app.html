@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+        <meta name="viewport" content="width=device-width" />
+        %sveltekit.head%
+        <script>
+            // Set theme immediately to prevent flashing
+            (function() {
+                const colorTheme = localStorage.getItem('colorTheme') || 'skeleton';
+                const darkMode = localStorage.getItem('darkMode') !== 'false'; // default to true
+                
+                // Handle dark mode class on html element
+                if (darkMode) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                
+                // Apply color theme to body when it's available
+                function applyColorTheme() {
+                    if (document.body) {
+                        document.body.setAttribute('data-theme', colorTheme);
+                    } else {
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.body.setAttribute('data-theme', colorTheme);
+                        });
+                    }
+                }
+                
+                applyColorTheme();
+            })();
+        </script>
+    </head>
+    <body data-sveltekit-preload-data="hover">
+        <div style="display: contents">%sveltekit.body%</div>
+    </body>
+</html>
