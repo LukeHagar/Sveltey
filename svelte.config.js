@@ -1,7 +1,4 @@
 import adapter from '@sveltejs/adapter-auto';
-<<<<<<< HEAD:my-saas-template/svelte.config.js
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-=======
 import { mdsvex } from 'mdsvex';
 import remarkUnwrapImages from 'remark-unwrap-images';
 import remarkToc from 'remark-toc';
@@ -14,7 +11,6 @@ const mdsvexOptions = {
 	remarkPlugins: [remarkUnwrapImages, remarkToc, remarkAbbr],
 	rehypePlugins: [rehypeSlug]
 };
->>>>>>> 3c705b9 (Overhaul):svelte.config.js
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
