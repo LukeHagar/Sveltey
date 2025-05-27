@@ -1,11 +1,27 @@
 import adapter from '@sveltejs/adapter-auto';
+<<<<<<< HEAD:my-saas-template/svelte.config.js
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+=======
+import { mdsvex } from 'mdsvex';
+import remarkUnwrapImages from 'remark-unwrap-images';
+import remarkToc from 'remark-toc';
+import remarkAbbr from 'remark-abbr';
+import rehypeSlug from 'rehype-slug';
+
+/** @type {import('mdsvex').MdsvexOptions} */
+const mdsvexOptions = {
+	extensions: ['.md'],
+	remarkPlugins: [remarkUnwrapImages, remarkToc, remarkAbbr],
+	rehypePlugins: [rehypeSlug]
+};
+>>>>>>> 3c705b9 (Overhaul):svelte.config.js
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
-	preprocess: vitePreprocess(),
+	extensions: ['.svelte', '.md'],
+	preprocess: [mdsvex(mdsvexOptions)],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.

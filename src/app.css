@@ -1,0 +1,53 @@
+<<<<<<< HEAD:my-saas-template/src/app.css
+/* Tailwind base, components, and utilities */
+@import 'tailwindcss';
+
+/* Skeleton core and base theme system */
+@import '@skeletonlabs/skeleton';
+
+/* Optional: Skeleton presets (recommended by v3 docs) */
+@import '@skeletonlabs/skeleton/optional/presets';
+
+/* Skeleton chosen theme (e.g., modern) */
+@import '@skeletonlabs/skeleton/themes/theme-modern.css';
+/* You can switch 'theme-modern.css' to other available themes like 'theme-cerberus.css', etc. */
+
+/* Your own global styles can go here */
+
+/* The @source line from docs is a comment, so it's omitted here */
+=======
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton/optional/presets';
+
+/* Skeleton UI Themes */
+@import '@skeletonlabs/skeleton/themes/catppuccin';
+@import '@skeletonlabs/skeleton/themes/cerberus';
+@import '@skeletonlabs/skeleton/themes/concord';
+@import '@skeletonlabs/skeleton/themes/crimson';
+@import '@skeletonlabs/skeleton/themes/fennec';
+@import '@skeletonlabs/skeleton/themes/hamlindigo';
+@import '@skeletonlabs/skeleton/themes/legacy';
+@import '@skeletonlabs/skeleton/themes/mint';
+@import '@skeletonlabs/skeleton/themes/modern';
+@import '@skeletonlabs/skeleton/themes/mona';
+@import '@skeletonlabs/skeleton/themes/nosh';
+@import '@skeletonlabs/skeleton/themes/nouveau';
+@import '@skeletonlabs/skeleton/themes/pine';
+@import '@skeletonlabs/skeleton/themes/reign';
+@import '@skeletonlabs/skeleton/themes/rocket';
+@import '@skeletonlabs/skeleton/themes/rose';
+@import '@skeletonlabs/skeleton/themes/sahara';
+@import '@skeletonlabs/skeleton/themes/seafoam';
+@import '@skeletonlabs/skeleton/themes/terminus';
+@import '@skeletonlabs/skeleton/themes/vintage';
+@import '@skeletonlabs/skeleton/themes/vox';
+@import '@skeletonlabs/skeleton/themes/wintry';
+
+@custom-variant dark (&:where(.dark, .dark *));
+>>>>>>> 3c705b9 (Overhaul):src/app.css
