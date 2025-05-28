@@ -2,8 +2,8 @@
     import { page } from '$app/state';
     import { AlertTriangle, Home, RefreshCw, ArrowLeft } from 'lucide-svelte';
     
-    $: status = $page.status;
-    $: message = $page.error?.message;
+    let status = $derived(page.status);
+    let message = $derived(page.error?.message);
 
     const getErrorInfo = (status: number) => {
         switch (status) {
@@ -38,7 +38,7 @@
         }
     };
 
-    $: errorInfo = getErrorInfo(status);
+    let errorInfo = $derived(getErrorInfo(status));
 </script>
 
 <svelte:head>
@@ -50,7 +50,7 @@
     <div class="max-w-2xl mx-auto text-center space-y-8">
         <!-- Error Icon and Status -->
         <div class="space-y-4">
-            <svelte:component this={errorInfo.icon} class="size-20 mx-auto {errorInfo.color}" />
+            <errorInfo.icon class="size-20 mx-auto {errorInfo.color}" />
             <div class="space-y-2">
                 <h1 class="h1">
                     <span class="text-7xl font-bold {errorInfo.color}">{status}</span>

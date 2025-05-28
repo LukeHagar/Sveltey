@@ -317,7 +317,7 @@
                             <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
                             Connecting...
                         {:else}
-                            <svelte:component this={provider.icon} class="size-4" />
+                            <provider.icon class="size-4" />
                             {provider.description}
                         {/if}
                     </button>

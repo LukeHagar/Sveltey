@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-    import { Palette } from 'lucide-svelte';
+    import { Palette } from '@lucide/svelte';
 
 	// Available color themes
 	const colorThemes = [
@@ -37,7 +37,7 @@
 	// Load theme from localStorage on mount
 	onMount(() => {
 		if (browser) {
-			const savedColorTheme = localStorage.getItem('colorTheme') || 'skeleton';
+			const savedColorTheme = localStorage.getItem('colorTheme') || 'legacy';
 			const savedDarkMode = localStorage.getItem('darkMode') !== 'false'; // default to true
 
 			currentColorTheme = savedColorTheme;
@@ -87,14 +87,14 @@
 			const savedDarkMode = localStorage.getItem('darkMode');
 
 			if (!savedColorTheme) {
-				localStorage.setItem('colorTheme', 'skeleton');
+				localStorage.setItem('colorTheme', 'legacy');
 			}
 			if (!savedDarkMode) {
 				localStorage.setItem('darkMode', 'true');
 			}
 
 			if (!savedColorTheme || !savedDarkMode) {
-				applyTheme(savedColorTheme || 'skeleton', savedDarkMode !== 'false');
+				applyTheme(savedColorTheme || 'legacy', savedDarkMode !== 'false');
 			}
 		}
 	});
