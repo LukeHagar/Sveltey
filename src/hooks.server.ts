@@ -32,10 +32,12 @@ const supabase: Handle = async ({ event, resolve }) => {
 	 * JWT before returning the session.
 	 */
 	event.locals.safeGetSession = async () => {
+		console.log('running safeGetSession');
 		const {
 			data: { session }
 		} = await event.locals.supabase.auth.getSession();
 		if (!session) {
+			console.log('no session, returning null');
 			return { session: null, user: null };
 		}
 
@@ -44,10 +46,12 @@ const supabase: Handle = async ({ event, resolve }) => {
 			error
 		} = await event.locals.supabase.auth.getUser();
 		if (error) {
+			console.log('error getting user, returning null');
 			// JWT validation has failed
 			return { session: null, user: null };
 		}
 
+		console.log('returning session and user');
 		return { session, user };
 	};
 
