@@ -1,6 +1,5 @@
 <script lang="ts">
     import { supabase } from '$lib/supabaseClient';
-    import { goto } from '$app/navigation';
     import { toaster } from '$lib';
     import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff, AlertTriangle } from '@lucide/svelte';
     import { onMount } from 'svelte';
@@ -144,7 +143,7 @@
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: provider as any,
                 options: {
-                    redirectTo: `${window.location.origin}/app/dashboard`
+                    redirectTo: `${window.location.origin}/auth`
                 }
             });
             if (error) throw error;
