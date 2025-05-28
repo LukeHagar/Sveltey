@@ -118,7 +118,7 @@
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: provider as any,
                 options: {
-                    redirectTo: `${window.location.origin}/dashboard`
+                    redirectTo: `${window.location.origin}/app/dashboard`
                 }
             });
             if (error) throw error;
