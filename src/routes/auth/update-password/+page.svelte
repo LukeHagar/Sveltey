@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
     import { toaster } from '$lib';
     import { supabase } from '$lib/supabaseClient';
-    import { Eye, EyeOff, KeyRound, Lock, Save } from '@lucide/svelte';
+    import { Eye, EyeOff, KeyRound, Lock, Save, AlertTriangle } from '@lucide/svelte';
     import type { Session } from '@supabase/supabase-js';
     import { onMount } from 'svelte';
 
@@ -31,6 +31,16 @@
     async function handleUpdatePassword(e: Event) {
         e.preventDefault();
         
+        // Disable password update for demo
+        toaster.create({
+            type: 'warning',
+            title: 'Demo Mode',
+            description: 'Password update is disabled in this demo. Please use GitHub login instead.'
+        });
+        return;
+        
+        // Original code commented out for demo
+        /*
         if (password !== confirmPassword) {
             toaster.create({
                 type: 'error',
@@ -64,7 +74,7 @@
                 description: 'Your password has been successfully updated.'
             });
             
-            goto('/app/dashboard');
+            goto('/dashboard');
         } catch (error: any) {
             toaster.create({
                 type: 'error',
@@ -74,6 +84,7 @@
         } finally {
             loading = false;
         }
+        */
     }
 </script>
 
@@ -84,6 +95,19 @@
 
 <div class="container mx-auto py-20">
     <div class="max-w-md mx-auto space-y-8">
+        <!-- Demo Notice -->
+        <div class="card preset-outlined-warning-500 p-4">
+            <div class="flex items-start gap-3">
+                <AlertTriangle class="size-5 text-warning-500 flex-shrink-0 mt-0.5" />
+                <div class="space-y-2">
+                    <h3 class="font-semibold text-warning-700 dark:text-warning-300">Demo Mode</h3>
+                    <p class="text-sm text-warning-600 dark:text-warning-400">
+                        Password update is disabled in this demo. Only <strong>GitHub login</strong> is available.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Header -->
         <header class="text-center space-y-4">
             <div class="flex items-center justify-center gap-2 mb-4">
@@ -98,7 +122,7 @@
         <!-- Update Form Card -->
         <div class="card preset-outlined-surface-200-800 p-8 space-y-6">
             <form onsubmit={handleUpdatePassword} class="space-y-6">
-                <div class="space-y-4">
+                <div class="space-y-4 opacity-50">
                     <div class="space-y-2">
                         <label class="label font-medium" for="password">
                             <Lock class="size-4 inline mr-2" />
@@ -110,17 +134,15 @@
                                 type={showPassword ? 'text' : 'password'}
                                 id="password" 
                                 bind:value={password} 
-                                placeholder="Create a strong password"
-                                required 
-                                disabled={loading}
+                                placeholder="Create a strong password (disabled in demo)"
+                                disabled={true}
                                 minlength="6"
                                 autocomplete="new-password"
                             />
                             <button
                                 type="button"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500 hover:text-surface-700 dark:hover:text-surface-300"
-                                onclick={() => showPassword = !showPassword}
-                                disabled={loading}
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500"
+                                disabled={true}
                             >
                                 {#if showPassword}
                                     <EyeOff class="size-4" />
@@ -143,16 +165,14 @@
                                 type={showConfirmPassword ? 'text' : 'password'}
                                 id="confirmPassword" 
                                 bind:value={confirmPassword} 
-                                placeholder="Confirm your password"
-                                required 
-                                disabled={loading}
+                                placeholder="Confirm your password (disabled in demo)"
+                                disabled={true}
                                 autocomplete="new-password"
                             />
                             <button
                                 type="button"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500 hover:text-surface-700 dark:hover:text-surface-300"
-                                onclick={() => showConfirmPassword = !showConfirmPassword}
-                                disabled={loading}
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500"
+                                disabled={true}
                             >
                                 {#if showConfirmPassword}
                                     <EyeOff class="size-4" />
@@ -166,7 +186,7 @@
 
                 <!-- Password Strength Indicator -->
                 {#if password.length > 0}
-                    <div class="space-y-2">
+                    <div class="space-y-2 opacity-50">
                         <p class="text-sm font-medium">Password Strength:</p>
                         <div class="flex gap-1">
                             <div class="h-2 flex-1 rounded {password.length >= 6 ? 'bg-success-500' : 'bg-surface-300'}"></div>
@@ -189,7 +209,7 @@
 
                 <!-- Password Match Indicator -->
                 {#if confirmPassword.length > 0}
-                    <div class="flex items-center gap-2 text-sm">
+                    <div class="flex items-center gap-2 text-sm opacity-50">
                         {#if password === confirmPassword}
                             <div class="w-2 h-2 bg-success-500 rounded-full"></div>
                             <span class="text-success-600 dark:text-success-400">Passwords match</span>
@@ -202,16 +222,11 @@
 
                 <button 
                     type="submit" 
-                    class="btn preset-filled-primary-500 w-full flex items-center justify-center gap-2" 
-                    disabled={loading || password !== confirmPassword || password.length < 6}
+                    class="btn preset-outlined-surface-200-800 w-full flex items-center justify-center gap-2 opacity-50 cursor-not-allowed" 
+                    disabled={true}
                 >
-                    {#if loading}
-                        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                        Updating password...
-                    {:else}
-                        <Save class="size-4" />
-                        Update Password
-                    {/if}
+                    <Save class="size-4" />
+                    Update Password (Demo Disabled)
                 </button>
             </form>
         </div>

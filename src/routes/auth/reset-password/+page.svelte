@@ -1,7 +1,7 @@
 <script lang="ts">
     import { supabase } from '$lib/supabaseClient';
     import { toaster } from '$lib';
-    import { Mail, Send, ArrowLeft, KeyRound } from '@lucide/svelte';
+    import { Mail, Send, ArrowLeft, KeyRound, AlertTriangle } from '@lucide/svelte';
 
     let email = $state('');
     let loading = $state(false);
@@ -9,6 +9,17 @@
 
     async function handleReset(e: Event) {
         e.preventDefault();
+        
+        // Disable password reset for demo
+        toaster.create({
+            type: 'warning',
+            title: 'Demo Mode',
+            description: 'Password reset is disabled in this demo. Please use GitHub login instead.'
+        });
+        return;
+        
+        // Original code commented out for demo
+        /*
         loading = true;
         
         try {
@@ -33,6 +44,7 @@
         } finally {
             loading = false;
         }
+        */
     }
 </script>
 
@@ -43,6 +55,19 @@
 
 <div class="container mx-auto py-20">
     <div class="max-w-md mx-auto space-y-8">
+        <!-- Demo Notice -->
+        <div class="card preset-outlined-warning-500 p-4">
+            <div class="flex items-start gap-3">
+                <AlertTriangle class="size-5 text-warning-500 flex-shrink-0 mt-0.5" />
+                <div class="space-y-2">
+                    <h3 class="font-semibold text-warning-700 dark:text-warning-300">Demo Mode</h3>
+                    <p class="text-sm text-warning-600 dark:text-warning-400">
+                        Password reset is disabled in this demo. Only <strong>GitHub login</strong> is available.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Header -->
         <header class="text-center space-y-4">
             <div class="flex items-center justify-center gap-2 mb-4">
@@ -58,19 +83,18 @@
         <div class="card preset-outlined-primary-500 p-8 space-y-6">
             {#if !sent}
                 <form onsubmit={handleReset} class="space-y-6">
-                    <div class="space-y-2">
+                    <div class="space-y-2 opacity-50">
                         <label class="label font-medium" for="email">
                             <Mail class="size-4 inline mr-2" />
                             Email Address
                         </label>
                         <input 
-                            class="input preset-outlined-secondary-500" 
+                            class="input preset-outlined-surface-200-800" 
                             type="email" 
                             id="email" 
                             bind:value={email} 
-                            placeholder="Enter your email address"
-                            required 
-                            disabled={loading}
+                            placeholder="Enter your email address (disabled in demo)"
+                            disabled={true}
                             autocomplete="email"
                         />
                         <p class="text-xs opacity-75">
@@ -80,16 +104,11 @@
 
                     <button 
                         type="submit" 
-                        class="btn preset-filled-primary-500 w-full flex items-center justify-center gap-2" 
-                        disabled={loading}
+                        class="btn preset-outlined-surface-200-800 w-full flex items-center justify-center gap-2 opacity-50 cursor-not-allowed" 
+                        disabled={true}
                     >
-                        {#if loading}
-                            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                            Sending reset email...
-                        {:else}
-                            <Send class="size-4" />
-                            Send Reset Email
-                        {/if}
+                        <Send class="size-4" />
+                        Send Reset Email (Demo Disabled)
                     </button>
                 </form>
             {:else}

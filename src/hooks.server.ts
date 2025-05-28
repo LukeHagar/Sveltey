@@ -67,10 +67,12 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.session = session;
 	event.locals.user = user;
 
+	console.log(event.locals);
+
 	// Protect routes that require authentication
 	if (event.url.pathname.startsWith('/app')) {
 		if (!session) {
-			throw redirect(303, '/auth/login');
+			throw redirect(303, '/auth');
 		}
 	}
 

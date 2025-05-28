@@ -2,7 +2,7 @@
     import { supabase } from '$lib/supabaseClient';
     import { goto } from '$app/navigation';
     import { toaster } from '$lib';
-    import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff } from '@lucide/svelte';
+    import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff, AlertTriangle } from '@lucide/svelte';
     import { onMount } from 'svelte';
 
     let activeTab = $state('login'); // 'login' or 'signup'
@@ -26,40 +26,55 @@
     let oauthLoading = $state('');
     let message = $state('');
 
-    // OAuth providers configuration
+    // OAuth providers configuration - only GitHub enabled for demo
     const oauthProviders = [
         { 
             name: 'GitHub', 
             provider: 'github', 
             icon: Github, 
             color: 'bg-[#333] hover:bg-[#555] text-white',
-            description: 'Continue with GitHub'
+            description: 'Continue with GitHub',
+            enabled: true
         },
         { 
             name: 'Google', 
             provider: 'google', 
             icon: Chrome, 
-            color: 'bg-white hover:bg-gray-50 text-gray-900 border border-gray-300',
-            description: 'Continue with Google'
+            color: 'bg-gray-300 text-gray-500 cursor-not-allowed',
+            description: 'Continue with Google (Demo Disabled)',
+            enabled: false
         },
         { 
             name: 'Discord', 
             provider: 'discord', 
             icon: MessageCircle, 
-            color: 'bg-[#5865F2] hover:bg-[#4752C4] text-white',
-            description: 'Continue with Discord'
+            color: 'bg-gray-300 text-gray-500 cursor-not-allowed',
+            description: 'Continue with Discord (Demo Disabled)',
+            enabled: false
         },
         { 
             name: 'Twitter', 
             provider: 'twitter', 
             icon: Twitter, 
-            color: 'bg-[#1DA1F2] hover:bg-[#1A91DA] text-white',
-            description: 'Continue with Twitter'
+            color: 'bg-gray-300 text-gray-500 cursor-not-allowed',
+            description: 'Continue with Twitter (Demo Disabled)',
+            enabled: false
         }
     ];
 
     async function handleSubmit(e: Event) {
         e.preventDefault();
+        
+        // Disable email/password authentication for demo
+        toaster.create({
+            type: 'warning',
+            title: 'Demo Mode',
+            description: 'Email/password authentication is disabled in this demo. Please use GitHub login instead.'
+        });
+        return;
+        
+        // Original code commented out for demo
+        /*
         loading = true;
         message = '';
         
@@ -110,9 +125,20 @@
         } finally {
             loading = false;
         }
+        */
     }
 
     async function handleOAuth(provider: string) {
+        // Only allow GitHub for demo
+        if (provider !== 'github') {
+            toaster.create({
+                type: 'warning',
+                title: 'Demo Mode',
+                description: `${provider.charAt(0).toUpperCase() + provider.slice(1)} login is disabled in this demo. Only GitHub login is available.`
+            });
+            return;
+        }
+
         oauthLoading = provider;
         try {
             const { error } = await supabase.auth.signInWithOAuth({
@@ -149,6 +175,20 @@
 
 <div class="container mx-auto py-20">
     <div class="max-w-md mx-auto space-y-8">
+        <!-- Demo Notice -->
+        <div class="card preset-outlined-warning-500 p-4">
+            <div class="flex items-start gap-3">
+                <AlertTriangle class="size-5 text-warning-500 flex-shrink-0 mt-0.5" />
+                <div class="space-y-2">
+                    <h3 class="font-semibold text-warning-700 dark:text-warning-300">Demo Mode</h3>
+                    <p class="text-sm text-warning-600 dark:text-warning-400">
+                        This is a demo deployment. Only <strong>GitHub login</strong> is enabled. 
+                        Email/password authentication and other OAuth providers are disabled for demonstration purposes.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Header -->
         <header class="text-center space-y-4">
             <div class="flex items-center justify-center gap-2 mb-4">
@@ -202,22 +242,21 @@
                 </div>
             {/if}
 
-            <!-- Email/Password Form -->
+            <!-- Email/Password Form (Disabled for demo) -->
             <form onsubmit={handleSubmit} class="space-y-6">
-                <div class="space-y-4">
+                <div class="space-y-4 opacity-50">
                     <div class="space-y-2">
                         <label class="label font-medium" for="email">
                             <Mail class="size-4 inline mr-2" />
                             Email Address
                         </label>
                         <input 
-                            class="input preset-outlined-primary-500" 
+                            class="input preset-outlined-surface-200-800" 
                             type="email" 
                             id="email" 
                             bind:value={formData.email} 
-                            placeholder="Enter your email"
-                            required 
-                            disabled={loading || oauthLoading !== ''}
+                            placeholder="Enter your email (disabled in demo)"
+                            disabled={true}
                             autocomplete="email"
                         />
                     </div>
@@ -229,21 +268,19 @@
                         </label>
                         <div class="relative">
                             <input 
-                                class="input preset-outlined-primary-500 pr-10" 
+                                class="input preset-outlined-surface-200-800 pr-10" 
                                 type={showPassword ? 'text' : 'password'}
                                 id="password" 
                                 bind:value={formData.password} 
-                                placeholder={activeTab === 'login' ? 'Enter your password' : 'Create a strong password'}
-                                required 
-                                disabled={loading || oauthLoading !== ''}
+                                placeholder={activeTab === 'login' ? 'Enter your password (disabled)' : 'Create a strong password (disabled)'}
+                                disabled={true}
                                 minlength={activeTab === 'signup' ? 6 : undefined}
                                 autocomplete={activeTab === 'login' ? 'current-password' : 'new-password'}
                             />
                             <button
                                 type="button"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500 hover:text-surface-700 dark:hover:text-surface-300"
-                                onclick={() => showPassword = !showPassword}
-                                disabled={loading || oauthLoading !== ''}
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500"
+                                disabled={true}
                             >
                                 {#if showPassword}
                                     <EyeOff class="size-4" />
@@ -260,20 +297,15 @@
 
                 <button 
                     type="submit" 
-                    class="btn preset-filled-primary-500 w-full flex items-center justify-center gap-2" 
-                    disabled={loading || oauthLoading !== ''}
+                    class="btn preset-outlined-surface-200-800 w-full flex items-center justify-center gap-2 opacity-50 cursor-not-allowed" 
+                    disabled={true}
                 >
-                    {#if loading}
-                        <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                        {activeTab === 'login' ? 'Signing you in...' : 'Creating your account...'}
+                    {#if activeTab === 'login'}
+                        <LogIn class="size-4" />
+                        Sign In (Demo Disabled)
                     {:else}
-                        {#if activeTab === 'login'}
-                            <LogIn class="size-4" />
-                            Sign In
-                        {:else}
-                            <UserPlus class="size-4" />
-                            Create Account
-                        {/if}
+                        <UserPlus class="size-4" />
+                        Create Account (Demo Disabled)
                     {/if}
                 </button>
             </form>
@@ -291,9 +323,9 @@
             <!-- Forgot Password for Login -->
             {#if activeTab === 'login'}
                 <div class="text-center">
-                    <a href="/auth/reset-password" class="text-sm text-primary-500 hover:text-primary-600 transition-colors">
-                        Forgot your password?
-                    </a>
+                    <span class="text-sm text-surface-500 opacity-50">
+                        Forgot your password? (Demo disabled)
+                    </span>
                 </div>
             {/if}
 
@@ -311,7 +343,7 @@
                         type="button"
                         class="btn w-full flex items-center justify-center gap-3 {provider.color}"
                         onclick={() => handleOAuth(provider.provider)}
-                        disabled={loading || oauthLoading !== ''}
+                        disabled={!provider.enabled || loading || oauthLoading !== ''}
                     >
                         {#if oauthLoading === provider.provider}
                             <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
