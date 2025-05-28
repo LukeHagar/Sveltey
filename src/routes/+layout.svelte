@@ -56,7 +56,7 @@
 						<span>Blog</span>
 					</a>
 					{#if session}
-						<a href="/dashboard" class="btn preset-ghost-surface-200-800 flex items-center gap-2">
+						<a href="/app/dashboard" class="btn preset-ghost-surface-200-800 flex items-center gap-2">
 							<LayoutDashboard class="size-4" />
 							<span>Dashboard</span>
 						</a>
