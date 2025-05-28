@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { type Handle, redirect } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
+
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
 const supabase: Handle = async ({ event, resolve }) => {
@@ -67,21 +68,17 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.session = session;
 	event.locals.user = user;
 
-	console.log(event.locals);
+	console.log({session, user});
 
 	// Protect routes that require authentication
-	if (event.url.pathname.startsWith('/app')) {
-		if (!session) {
-			throw redirect(303, '/auth');
-		}
+	if (!event.locals.session && event.url.pathname.startsWith('/app')) {
+		redirect(303, '/auth')
 	}
 
 	// Redirect authenticated users away from auth pages
-	if (event.url.pathname !== "/auth/logout" && event.url.pathname.startsWith('/auth' )) {
-		if (session) {
-			throw redirect(303, '/app/dashboard');
-		}
-	}
+	if (event.locals.session && event.url.pathname === '/auth') {
+		redirect(303, '/app/dashboard')
+	  }
 
 	return resolve(event);
 };
