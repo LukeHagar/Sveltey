@@ -4,6 +4,10 @@
     import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff, AlertTriangle } from '@lucide/svelte';
     import { onMount } from 'svelte';
 
+    let { data } = $props();
+
+    const session = $derived(data.session);
+
     let activeTab = $state('login'); // 'login' or 'signup'
     let showPassword = $state(false);
 
@@ -163,6 +167,10 @@
         message = '';
         formData = { email: '', password: '' };
     }
+
+    $effect(() => {
+        console.log(session);
+    });
 </script>
 
 <svelte:head>
