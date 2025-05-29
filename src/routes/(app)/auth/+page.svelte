@@ -10,13 +10,71 @@
 
     let activeTab = $state('login'); // 'login' or 'signup'
     let showPassword = $state(false);
+    let authError = $state('');
 
     onMount(() => {
-        // Check URL parameters to set initial tab
+        // Check URL parameters to set initial tab and handle errors
         const urlParams = new URLSearchParams(window.location.search);
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        
+        // Check for mode parameter
         const mode = urlParams.get('mode');
         if (mode === 'signup') {
             activeTab = 'signup';
+        }
+
+        // Check for Supabase auth errors in URL params or hash
+        const error = urlParams.get('error') || hashParams.get('error');
+        const errorCode = urlParams.get('error_code') || hashParams.get('error_code');
+        const errorDescription = urlParams.get('error_description') || hashParams.get('error_description');
+
+        if (error) {
+            let errorMessage = 'Authentication failed';
+            
+            // Map common Supabase error codes to user-friendly messages
+            switch (errorCode) {
+                case 'unexpected_failure':
+                    if (errorDescription?.includes('user profile from external provider')) {
+                        errorMessage = 'Unable to retrieve your profile from the OAuth provider. This may be due to privacy settings or a temporary issue. Please try again.';
+                    } else {
+                        errorMessage = 'An unexpected error occurred during authentication. Please try again.';
+                    }
+                    break;
+                case 'oauth_callback_error':
+                    errorMessage = 'OAuth authentication was cancelled or failed. Please try again.';
+                    break;
+                case 'access_denied':
+                    errorMessage = 'Access was denied by the OAuth provider. Please try again and ensure you grant the necessary permissions.';
+                    break;
+                case 'server_error':
+                    errorMessage = 'A server error occurred during authentication. Please try again in a moment.';
+                    break;
+                default:
+                    // Use the error description if available, otherwise use generic message
+                    if (errorDescription) {
+                        errorMessage = decodeURIComponent(errorDescription.replace(/\+/g, ' '));
+                    }
+                    break;
+            }
+
+            authError = errorMessage;
+            
+            // Show toast notification for the error
+            toaster.create({
+                type: 'error',
+                title: 'Authentication Error',
+                description: errorMessage
+            });
+
+            // Clean up the URL by removing error parameters
+            const cleanUrl = new URL(window.location.href);
+            cleanUrl.searchParams.delete('error');
+            cleanUrl.searchParams.delete('error_code');
+            cleanUrl.searchParams.delete('error_description');
+            cleanUrl.hash = '';
+            
+            // Use replaceState to avoid adding to browser history
+            window.history.replaceState({}, '', cleanUrl.toString());
         }
     });
     
@@ -142,6 +200,10 @@
             return;
         }
 
+        // Clear any previous auth errors
+        authError = '';
+        message = '';
+
         oauthLoading = provider;
         try {
             const { error } = await supabase.auth.signInWithOAuth({
@@ -154,9 +216,10 @@
         } catch (error: any) {
             toaster.create({
                 type: 'error',
-                title: `${provider} ${activeTab} failed`,
+                title: `${provider} authentication failed`,
                 description: error.message
             });
+            authError = error.message;
         } finally {
             oauthLoading = '';
         }
@@ -165,7 +228,12 @@
     function switchTab(tab: string) {
         activeTab = tab;
         message = '';
+        authError = '';
         formData = { email: '', password: '' };
+    }
+
+    function dismissAuthError() {
+        authError = '';
     }
 
     $effect(() => {
@@ -188,6 +256,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- Auth Error Display -->
+        {#if authError}
+            <div class="card preset-outlined-error-500 p-4">
+                <div class="flex items-start gap-3">
+                    <AlertTriangle class="size-5 text-error-500 flex-shrink-0 mt-0.5" />
+                    <div class="flex-1 space-y-2">
+                        <h3 class="font-semibold text-error-700 dark:text-error-300">Authentication Failed</h3>
+                        <p class="text-sm text-error-600 dark:text-error-400">{authError}</p>
+                        <button 
+                            type="button"
+                            class="text-xs text-error-500 hover:text-error-600 underline"
+                            onclick={dismissAuthError}
+                        >
+                            Dismiss
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {/if}
 
         <!-- Header -->
         <header class="text-center space-y-4">
