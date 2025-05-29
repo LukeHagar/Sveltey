@@ -11,7 +11,7 @@ export interface BlogPost {
 }
 
 // Get all blog post files
-const allPostFiles = import.meta.glob('/src/lib/posts/*.md');
+const allPostFiles = import.meta.glob('$lib/posts/*.md');
 
 // Parse frontmatter and extract metadata only
 const parsePostMetadata = async (filename: string, module: any): Promise<BlogPost> => {
