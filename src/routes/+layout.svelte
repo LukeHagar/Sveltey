@@ -16,6 +16,36 @@
 	// Merge base meta tags with page-specific meta tags
 	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags || {}));
 
+	// Helper function to check if a path is active
+	function isActivePath(path: string): boolean {
+		if (path === '/') {
+			return page.url.pathname === '/';
+		}
+		return page.url.pathname.startsWith(path);
+	}
+
+	// Helper function to get navigation link classes
+	function getNavLinkClasses(path: string): string {
+		const isActive = isActivePath(path);
+		const baseClasses = 'btn flex items-center gap-2';
+
+		if (isActive) {
+			return `${baseClasses} preset-filled-primary-500 cursor-default`;
+		}
+		return `${baseClasses} preset-ghost-surface-200-800`;
+	}
+
+	// Helper function to get mobile navigation link classes
+	function getMobileNavLinkClasses(path: string): string {
+		const isActive = isActivePath(path);
+		const baseClasses = 'btn flex items-center justify-start gap-2';
+
+		if (isActive) {
+			return `${baseClasses} preset-filled-primary-500 cursor-default`;
+		}
+		return `${baseClasses} preset-ghost-surface-200-800`;
+	}
+
 	onMount(() => {
 		// Sync client-side session with server-side on mount
 		const { data } = supabase.auth.onAuthStateChange((event, newSession) => {
@@ -51,23 +81,54 @@
 
 				<!-- Main Navigation -->
 				<div class="hidden items-center space-x-1 md:flex">
-					<a href="/" class="btn preset-ghost-surface-200-800 flex items-center gap-2">
-						<Home class="size-4" />
-						<span>Home</span>
-					</a>
-					<a href="/pricing" class="btn preset-ghost-surface-200-800 flex items-center gap-2">
-						<DollarSign class="size-4" />
-						<span>Pricing</span>
-					</a>
-					<a href="/blog" class="btn preset-ghost-surface-200-800 flex items-center gap-2">
-						<BookOpen class="size-4" />
-						<span>Blog</span>
-					</a>
-					{#if session}
-						<a href="/app/dashboard" class="btn preset-ghost-surface-200-800 flex items-center gap-2">
-							<LayoutDashboard class="size-4" />
-							<span>Dashboard</span>
+					{#if isActivePath('/')}
+						<span class={getNavLinkClasses('/')} aria-current="page">
+							<Home class="size-4" />
+							<span>Home</span>
+						</span>
+					{:else}
+						<a href="/" class={getNavLinkClasses('/')}>
+							<Home class="size-4" />
+							<span>Home</span>
 						</a>
+					{/if}
+
+					{#if isActivePath('/pricing')}
+						<span class={getNavLinkClasses('/pricing')} aria-current="page">
+							<DollarSign class="size-4" />
+							<span>Pricing</span>
+						</span>
+					{:else}
+						<a href="/pricing" class={getNavLinkClasses('/pricing')}>
+							<DollarSign class="size-4" />
+							<span>Pricing</span>
+						</a>
+					{/if}
+
+					{#if isActivePath('/blog')}
+						<span class={getNavLinkClasses('/blog')} aria-current="page">
+							<BookOpen class="size-4" />
+							<span>Blog</span>
+						</span>
+					{:else}
+						<a href="/blog" class={getNavLinkClasses('/blog')}>
+							<BookOpen class="size-4" />
+							<span>Blog</span>
+						</a>
+					{/if}
+
+					{#if session}
+						{#if isActivePath('/app/dashboard')}
+							<span class={getNavLinkClasses('/app/dashboard')} aria-current="page">
+								<LayoutDashboard class="size-4" />
+								<span>Dashboard</span>
+							</span>
+						{:else}
+							<a href="/app/dashboard" class={getNavLinkClasses('/app/dashboard')}>
+								<LayoutDashboard class="size-4" />
+								<span>Dashboard</span>
+							</a>
+						{/if}
 					{/if}
 				</div>
 			</div>
@@ -104,11 +165,24 @@
 				{:else}
 					<!-- Authentication Buttons -->
 					<div class="flex items-center gap-2">
-						<a href="/auth" class="btn preset-outlined-surface-500 h-8 flex items-center gap-2">
-							<User class="size-4" />
-							<span>Sign In</span>
-						</a>
-						<a href="/auth?mode=signup" class="btn preset-filled-primary-500 flex items-center gap-2">
+						{#if isActivePath('/auth')}
+							<span
+								class="btn preset-filled-primary-500 flex h-8 cursor-default items-center gap-2"
+								aria-current="page"
+							>
+								<User class="size-4" />
+								<span>Sign In</span>
+							</span>
+						{:else}
+							<a href="/auth" class="btn preset-outlined-surface-500 flex h-8 items-center gap-2">
+								<User class="size-4" />
+								<span>Sign In</span>
+							</a>
+						{/if}
+						<a
+							href="/auth?mode=signup"
+							class="btn preset-filled-primary-500 flex items-center gap-2"
+						>
 							<span>Get Started</span>
 						</a>
 					</div>
@@ -119,32 +193,54 @@
 		<!-- Mobile Navigation Menu (Hidden by default, would need JS to toggle) -->
 		<div class="border-surface-300-600-token mt-4 border-t pt-4 md:hidden">
 			<div class="flex flex-col space-y-2">
-				<a href="/" class="btn preset-ghost-surface-200-800 flex items-center justify-start gap-2">
-					<Home class="size-4" />
-					<span>Home</span>
-				</a>
-				<a
-					href="/pricing"
-					class="btn preset-ghost-surface-200-800 flex items-center justify-start gap-2"
-				>
-					<DollarSign class="size-4" />
-					<span>Pricing</span>
-				</a>
-				<a
-					href="/blog"
-					class="btn preset-ghost-surface-200-800 flex items-center justify-start gap-2"
-				>
-					<BookOpen class="size-4" />
-					<span>Blog</span>
-				</a>
-				{#if session}
-					<a
-						href="/dashboard"
-						class="btn preset-ghost-surface-200-800 flex items-center justify-start gap-2"
-					>
-						<LayoutDashboard class="size-4" />
-						<span>Dashboard</span>
+				{#if isActivePath('/')}
+					<span class={getMobileNavLinkClasses('/')} aria-current="page">
+						<Home class="size-4" />
+						<span>Home</span>
+					</span>
+				{:else}
+					<a href="/" class={getMobileNavLinkClasses('/')}>
+						<Home class="size-4" />
+						<span>Home</span>
 					</a>
+				{/if}
+
+				{#if isActivePath('/pricing')}
+					<span class={getMobileNavLinkClasses('/pricing')} aria-current="page">
+						<DollarSign class="size-4" />
+						<span>Pricing</span>
+					</span>
+				{:else}
+					<a href="/pricing" class={getMobileNavLinkClasses('/pricing')}>
+						<DollarSign class="size-4" />
+						<span>Pricing</span>
+					</a>
+				{/if}
+
+				{#if isActivePath('/blog')}
+					<span class={getMobileNavLinkClasses('/blog')} aria-current="page">
+						<BookOpen class="size-4" />
+						<span>Blog</span>
+					</span>
+				{:else}
+					<a href="/blog" class={getMobileNavLinkClasses('/blog')}>
+						<BookOpen class="size-4" />
+						<span>Blog</span>
+					</a>
+				{/if}
+
+				{#if session}
+					{#if isActivePath('/app/dashboard')}
+						<span class={getMobileNavLinkClasses('/app/dashboard')} aria-current="page">
+							<LayoutDashboard class="size-4" />
+							<span>Dashboard</span>
+						</span>
+					{:else}
+						<a href="/app/dashboard" class={getMobileNavLinkClasses('/app/dashboard')}>
+							<LayoutDashboard class="size-4" />
+							<span>Dashboard</span>
+						</a>
+					{/if}
 				{/if}
 			</div>
 		</div>
@@ -193,15 +289,18 @@
 			<div class="space-y-4">
 				<h3 class="font-semibold">Support</h3>
 				<div class="space-y-2 text-sm">
-					<a href="/docs" class="block opacity-75 transition-opacity hover:opacity-100"
-						>Documentation</a
+					<a
+						href="https://github.com/LukeHagar/sveltey"
+						class="block opacity-75 transition-opacity hover:opacity-100"
 					>
-					<a href="/contact" class="block opacity-75 transition-opacity hover:opacity-100"
-						>Contact</a
-					>
-					<a href="/help" class="block opacity-75 transition-opacity hover:opacity-100"
-						>Help Center</a
-					>
+						GitHub
+					</a>
+					<a href="/contact" class="block opacity-75 transition-opacity hover:opacity-100">
+						Contact
+					</a>
+					<a href="/help" class="block opacity-75 transition-opacity hover:opacity-100">
+						Help Center
+					</a>
 				</div>
 			</div>
 
@@ -209,15 +308,15 @@
 			<div class="space-y-4">
 				<h3 class="font-semibold">Legal</h3>
 				<div class="space-y-2 text-sm">
-					<a href="/privacy" class="block opacity-75 transition-opacity hover:opacity-100"
-						>Privacy Policy</a
-					>
-					<a href="/terms" class="block opacity-75 transition-opacity hover:opacity-100"
-						>Terms of Service</a
-					>
-					<a href="/cookies" class="block opacity-75 transition-opacity hover:opacity-100"
-						>Cookie Policy</a
-					>
+					<a href="/privacy" class="block opacity-75 transition-opacity hover:opacity-100">
+						Privacy Policy
+					</a>
+					<a href="/terms" class="block opacity-75 transition-opacity hover:opacity-100">
+						Terms of Service
+					</a>
+					<a href="/cookies" class="block opacity-75 transition-opacity hover:opacity-100">
+						Cookie Policy
+					</a>
 				</div>
 			</div>
 		</div>
