@@ -1,15 +1,20 @@
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
+	import { page } from '$app/state';
 	import { toaster } from '$lib';
 	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
 	import { Avatar, Modal, Toaster } from '@skeletonlabs/skeleton-svelte';
 	import { BookOpen, DollarSign, Home, LayoutDashboard, LogOut, User } from '@lucide/svelte';
 	import 'prism-themes/themes/prism-vsc-dark-plus.css';
 	import { onMount } from 'svelte';
+	import { MetaTags, deepMerge } from 'svelte-meta-tags';
 	import '../app.css';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
+
+	// Merge base meta tags with page-specific meta tags
+	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags || {}));
 
 	onMount(() => {
 		// Sync client-side session with server-side on mount
@@ -22,6 +27,9 @@
 		return () => data.subscription.unsubscribe();
 	});
 </script>
+
+<!-- Meta Tags -->
+<MetaTags {...metaTags} />
 
 <!-- Skeleton Toasts and Modals -->
 <Toaster {toaster}></Toaster>
@@ -38,7 +46,7 @@
 					<div class="bg-primary-500 flex h-8 w-8 items-center justify-center rounded-lg">
 						<span class="text-lg font-bold text-white">S</span>
 					</div>
-					<span class="text-xl font-bold">Sassy</span>
+					<span class="text-xl font-bold">Sveltey</span>
 				</a>
 
 				<!-- Main Navigation -->
@@ -159,7 +167,7 @@
 					<div class="bg-primary-500 flex h-8 w-8 items-center justify-center rounded-lg">
 						<span class="text-lg font-bold text-white">S</span>
 					</div>
-					<span class="text-xl font-bold">Sassy</span>
+					<span class="text-xl font-bold">Sveltey</span>
 				</div>
 				<p class="text-sm opacity-75">
 					The complete SvelteKit & Supabase SaaS template. Launch your next project in minutes, not
@@ -218,7 +226,7 @@
 		<div
 			class="border-surface-300-600-token mt-8 flex flex-col items-center justify-between border-t pt-8 md:flex-row"
 		>
-			<p class="text-sm opacity-50">© 2025 Sassy. All rights reserved.</p>
+			<p class="text-sm opacity-50">© 2025 Sveltey. All rights reserved.</p>
 			<div class="mt-4 flex items-center gap-4 md:mt-0">
 				<span class="text-sm opacity-50">Built with</span>
 				<div class="flex items-center gap-2 text-sm opacity-75">

@@ -32,8 +32,8 @@ Getting started with our template is incredibly simple:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/sassy-template.git
-cd sassy-template
+git clone https://github.com/your-org/sveltey-template.git
+cd sveltey-template
 
 # Install dependencies
 npm install
@@ -321,8 +321,8 @@ Ready to accelerate your SaaS development? Our template eliminates months of boi
 
 ```bash
 # Get started in under 5 minutes
-git clone https://github.com/your-org/sassy-template.git
-cd sassy-template
+git clone https://github.com/your-org/sveltey-template.git
+cd sveltey-template
 npm install
 npm run dev
 ```

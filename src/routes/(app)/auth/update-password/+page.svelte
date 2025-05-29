@@ -89,7 +89,7 @@
 </script>
 
 <svelte:head>
-    <title>Update Password - Sassy</title>
+    <title>Update Password - Sveltey</title>
     <meta name="description" content="Set your new password to secure your account." />
 </svelte:head>
 

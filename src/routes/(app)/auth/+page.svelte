@@ -173,13 +173,6 @@
     });
 </script>
 
-<svelte:head>
-    <title>{activeTab === 'login' ? 'Sign In' : 'Create Account'} - Sassy</title>
-    <meta name="description" content={activeTab === 'login' 
-        ? 'Sign in to your account to access your dashboard and manage your projects.' 
-        : 'Create your account to start building with our comprehensive SaaS template.'} />
-</svelte:head>
-
 <div class="container mx-auto py-20">
     <div class="max-w-md mx-auto space-y-8">
         <!-- Demo Notice -->

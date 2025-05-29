@@ -64,11 +64,6 @@
     ];
 </script>
 
-<svelte:head>
-    <title>Pricing - Choose Your Plan</title>
-    <meta name="description" content="Simple, transparent pricing for every stage of your journey. Start free and scale as you grow." />
-</svelte:head>
-
 <div class="container mx-auto py-20 space-y-20">
     <!-- Header -->
     <header class="text-center space-y-4 max-w-3xl mx-auto">

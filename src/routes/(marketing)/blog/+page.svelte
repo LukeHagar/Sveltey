@@ -1,7 +1,8 @@
 <script lang="ts">
     import { Calendar, User, Tag, BookOpen, Star } from '@lucide/svelte';
+	import type { PageProps } from './$types';
 
-    let { data } = $props();
+    let { data }: PageProps = $props();
     
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
@@ -11,11 +12,6 @@
         });
     };
 </script>
-
-<svelte:head>
-    <title>Blog - Insights & Tutorials</title>
-    <meta name="description" content="Discover insights, tutorials, and updates from our team. Learn about SaaS development, best practices, and product updates." />
-</svelte:head>
 
 <div class="container mx-auto py-20 space-y-20">
     <!-- Header -->
@@ -29,11 +25,7 @@
         </p>
     </header>
 
-    {#if data.error}
-        <div class="card preset-outlined-error-500 p-8 text-center max-w-2xl mx-auto">
-            <p class="text-error-600 dark:text-error-400">{data.error}</p>
-        </div>
-    {:else if data.posts && data.posts.length > 0}
+    {#if data.posts && data.posts.length > 0}
         <hr class="hr max-w-48 mx-auto" />
 
         <!-- Featured Posts -->

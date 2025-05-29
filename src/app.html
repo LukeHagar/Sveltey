@@ -7,9 +7,12 @@
         %sveltekit.head%
         <script>
             // Set theme immediately to prevent flashing
+            const defaultTheme = 'legacy';
+            const defaultDarkMode = true;
+
             (function() {
-                const colorTheme = localStorage.getItem('colorTheme') || 'legacy';
-                const darkMode = localStorage.getItem('darkMode') !== 'false'; // default to true
+                const colorTheme = localStorage.getItem('colorTheme') || defaultTheme;
+                const darkMode = localStorage.getItem('darkMode') !== 'false' || defaultDarkMode; // default to true
                 
                 // Handle dark mode class on html element
                 if (darkMode) {

@@ -32,19 +32,6 @@
     });
 </script>
 
-<svelte:head>
-    <title>{post.title} | Blog</title>
-    <meta name="description" content={post.excerpt} />
-    <meta property="og:title" content={post.title} />
-    <meta property="og:description" content={post.excerpt} />
-    <meta property="og:type" content="article" />
-    <meta property="article:published_time" content={post.publishedAt} />
-    <meta property="article:author" content={post.author} />
-    {#each post.tags as tag}
-        <meta property="article:tag" content={tag} />
-    {/each}
-</svelte:head>
-
 <div class="container mx-auto py-20 space-y-12 max-w-4xl">
     <!-- Breadcrumb Navigation -->
     <nav class="flex items-center gap-2 text-sm">

@@ -1,8 +1,9 @@
 import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr'
 import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
 import type { LayoutLoad } from './$types'
+import type { MetaTagsProps } from 'svelte-meta-tags'
 
-export const load: LayoutLoad = async ({ data, depends, fetch }) => {
+export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
   /**
    * Declare a dependency so the layout can be invalidated, for example, on
    * session refresh.
@@ -39,5 +40,85 @@ export const load: LayoutLoad = async ({ data, depends, fetch }) => {
     data: { user },
   } = await supabase.auth.getUser()
 
-  return { session, supabase, user }
+  const baseMetaTags = Object.freeze({
+    title: 'Sveltey - SvelteKit SaaS Template',
+    titleTemplate: '%s | Sveltey',
+    description: 'A comprehensive, production-ready SaaS template built with Svelte 5, SvelteKit 2, Supabase, and Skeleton UI. Launch your next SaaS project in minutes, not months.',
+    canonical: new URL(url.pathname, url.origin).href,
+    robots: 'index,follow',
+    keywords: ['SvelteKit', 'SaaS', 'template', 'Svelte 5', 'Supabase', 'Skeleton UI', 'TypeScript', 'authentication', 'dashboard'],
+    
+    openGraph: {
+      type: 'website',
+      url: new URL(url.pathname, url.origin).href,
+      title: 'Sveltey - SvelteKit SaaS Template',
+      description: 'A comprehensive, production-ready SaaS template built with Svelte 5, SvelteKit 2, Supabase, and Skeleton UI. Launch your next SaaS project in minutes, not months.',
+      siteName: 'Sveltey',
+      locale: 'en_US',
+      images: [
+        {
+          url: `${url.origin}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Sveltey - SvelteKit SaaS Template',
+          type: 'image/jpeg'
+        }
+      ]
+    },
+    
+    twitter: {
+      cardType: 'summary_large_image' as const,
+      site: '@sveltey_dev',
+      creator: '@sveltey_dev',
+      title: 'Sveltey - SvelteKit SaaS Template',
+      description: 'A comprehensive, production-ready SaaS template built with Svelte 5, SvelteKit 2, Supabase, and Skeleton UI.',
+      image: `${url.origin}/og-image.jpg`,
+      imageAlt: 'Sveltey - SvelteKit SaaS Template'
+    },
+    
+    additionalMetaTags: [
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        name: 'theme-color',
+        content: '#0ea5e9'
+      },
+      {
+        name: 'application-name',
+        content: 'Sveltey'
+      },
+      {
+        name: 'apple-mobile-web-app-capable',
+        content: 'yes'
+      },
+      {
+        name: 'apple-mobile-web-app-status-bar-style',
+        content: 'default'
+      },
+      {
+        name: 'apple-mobile-web-app-title',
+        content: 'Sveltey'
+      }
+    ],
+    
+    additionalLinkTags: [
+      {
+        rel: 'icon',
+        href: '/favicon.ico'
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/apple-touch-icon.png',
+        sizes: '180x180'
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json'
+      }
+    ]
+  }) satisfies MetaTagsProps
+
+  return { session, supabase, user, baseMetaTags }
 }

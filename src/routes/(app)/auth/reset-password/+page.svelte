@@ -49,7 +49,7 @@
 </script>
 
 <svelte:head>
-    <title>Reset Password - Sassy</title>
+    <title>Reset Password - Sveltey</title>
     <meta name="description" content="Reset your password to regain access to your account." />
 </svelte:head>
 

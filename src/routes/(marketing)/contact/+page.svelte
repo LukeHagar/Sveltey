@@ -43,11 +43,6 @@
     }
 </script>
 
-<svelte:head>
-    <title>Contact Us - Get in Touch</title>
-    <meta name="description" content="Get in touch with our team. We're here to help with any questions about our SaaS platform." />
-</svelte:head>
-
 <div class="container mx-auto py-20">
     <div class="max-w-6xl mx-auto space-y-16">
         <!-- Header -->
@@ -73,7 +68,7 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold">Email Us</h3>
-                                <p class="text-sm opacity-75">support@sassy.dev</p>
+                                <p class="text-sm opacity-75">support@sveltey.dev</p>
                             </div>
                         </div>
                     </div>
@@ -206,37 +201,34 @@
 
         <!-- FAQ Section -->
         <section class="space-y-8">
-            <div class="text-center">
-                <h2 class="h2 mb-4">Frequently Asked <span class="text-primary-500">Questions</span></h2>
-                <p class="opacity-75">Quick answers to common questions.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-3">
-                    <h3 class="font-semibold">How can I get started?</h3>
-                    <p class="text-sm opacity-75">
-                        Simply sign up for an account and you'll have immediate access to our platform. Check out our pricing page for plan details.
+            <h2 class="h2 text-center">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="space-y-4">
+                    <h3 class="h4 text-primary-500">How quickly do you respond?</h3>
+                    <p class="opacity-75">
+                        We aim to respond to all inquiries within 24 hours during business days. 
+                        For urgent matters, please call us directly.
                     </p>
                 </div>
-
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-3">
-                    <h3 class="font-semibold">Do you offer technical support?</h3>
-                    <p class="text-sm opacity-75">
-                        Yes! We provide comprehensive technical support via email and our help center. Premium plans include priority support.
+                <div class="space-y-4">
+                    <h3 class="h4 text-primary-500">Do you offer technical support?</h3>
+                    <p class="opacity-75">
+                        Yes! We provide comprehensive technical support for all our customers. 
+                        Premium plans include priority support with faster response times.
                     </p>
                 </div>
-
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-3">
-                    <h3 class="font-semibold">Can I cancel my subscription anytime?</h3>
-                    <p class="text-sm opacity-75">
-                        Absolutely. You can cancel your subscription at any time from your dashboard. Your access will continue until the end of your billing period.
+                <div class="space-y-4">
+                    <h3 class="h4 text-primary-500">Can I schedule a demo?</h3>
+                    <p class="opacity-75">
+                        Absolutely! Contact us to schedule a personalized demo of our platform. 
+                        We'll show you how our solution can meet your specific needs.
                     </p>
                 </div>
-
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-3">
-                    <h3 class="font-semibold">Is there a free trial?</h3>
-                    <p class="text-sm opacity-75">
-                        Yes! We offer a 14-day free trial for all new users. No credit card required to get started.
+                <div class="space-y-4">
+                    <h3 class="h4 text-primary-500">What about custom solutions?</h3>
+                    <p class="opacity-75">
+                        We offer custom development and integration services for enterprise clients. 
+                        Reach out to discuss your specific requirements.
                     </p>
                 </div>
             </div>
