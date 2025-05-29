@@ -1,6 +1,6 @@
 # 🚀 Sveltey - SvelteKit SaaS Template
 
-![Sveltey SaaS Template](https://github.com/user-attachments/assets/cd687610-c5e2-477a-ac09-dd73622db7b7)
+![Sveltey SaaS Template](https://github.com/user-attachments/assets/5dc91129-ebc7-4458-98b6-1862c6de4428)
 
 A modern, production-ready SaaS template built with SvelteKit 2, Svelte 5, Supabase, and Skeleton UI. Get your SaaS project up and running in hours, not months.
 
