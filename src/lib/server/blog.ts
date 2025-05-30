@@ -8,6 +8,7 @@ export interface BlogPost {
 	author: string;
 	tags: string[];
 	featured: boolean;
+	content: string;
 }
 
 // Get all blog post files
@@ -16,7 +17,7 @@ const allPostFiles = import.meta.glob('$lib/posts/*.md');
 // Parse frontmatter and extract metadata only
 const parsePostMetadata = async (filename: string, module: any): Promise<BlogPost> => {
 	const postModule = await module();
-	const { metadata } = postModule;
+	const { metadata, default: content } = postModule;
 	
 	// Extract slug from filename if not provided in frontmatter
 	const slug = metadata.slug || filename.split('/').pop()?.replace('.md', '') || '';
@@ -28,7 +29,8 @@ const parsePostMetadata = async (filename: string, module: any): Promise<BlogPos
 		publishedAt: metadata.publishedAt || new Date().toISOString().split('T')[0],
 		author: metadata.author || 'Anonymous',
 		tags: metadata.tags || [],
-		featured: metadata.featured || false
+		featured: metadata.featured || false,
+		content
 	};
 };
 
