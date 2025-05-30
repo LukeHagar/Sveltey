@@ -5,14 +5,14 @@
 </picture>
 </div>
 
-# 🚀 Sveltey - SvelteKit SaaS Template
+# 🚀 Sveltey - a SaaS Template built with SvelteKit
 
 
 ![Sveltey SaaS Template](https://github.com/user-attachments/assets/5dc91129-ebc7-4458-98b6-1862c6de4428)
 
-A modern, production-ready SaaS template built with SvelteKit 2, Svelte 5, Supabase, and Skeleton UI. Get your SaaS project up and running in hours, not months.
+A modern, production-ready SaaS template built with [SvelteKit 2](https://kit.svelte.dev/), [Svelte 5](https://svelte.dev/), [Supabase](https://supabase.com/), and [Skeleton UI](https://skeleton.dev/). Get your SaaS project up and running in hours, not months.
 
-- [🚀 Sveltey - SvelteKit SaaS Template](#-sveltey---sveltekit-saas-template)
+- [🚀 Sveltey - a SaaS Template built with SvelteKit](#-sveltey---a-saas-template-built-with-sveltekit)
   - [✨ Features](#-features)
     - [🔐 Authentication \& User Management](#-authentication--user-management)
     - [🎨 Modern UI/UX](#-modern-uiux)

@@ -1,12 +1,9 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { Calendar, User, Tag, Share2, ArrowLeft, Star, Twitter, Linkedin } from '@lucide/svelte';
 
     let { data } = $props();
+
     let post = $derived(data.post);
-    let component: any = $state(null);
-    let loading = $state(true);
-    let error = $state(false);
     
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {
@@ -15,19 +12,6 @@
             day: 'numeric'
         });
     };
-
-    onMount(async () => {
-        try {
-            // Dynamically import the markdown component
-            const module = import.meta.glob(`$lib/posts/${data.slug}.md`);
-            component = module.default;
-        } catch (err) {
-            console.error('Failed to load blog post component:', err);
-            error = true;
-        } finally {
-            loading = false;
-        }
-    });
 </script>
 
 <div class="container mx-auto py-20 space-y-12 max-w-4xl">
@@ -121,28 +105,9 @@
 
     <!-- Article Content -->
     <article class="prose dark:prose-invert prose-lg max-w-none">
-        {#if loading}
-            <div class="card preset-outlined-surface-200-800 p-8 text-center space-y-4">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto"></div>
-                <span class="text-sm opacity-75">Loading article content...</span>
-            </div>
-        {:else if error}
-            <div class="card preset-outlined-error-500 p-8 text-center space-y-4">
-                <p class="text-error-600 dark:text-error-400">Failed to load blog post content.</p>
-                <a href="/blog" class="btn preset-filled-primary-500">
-                    <ArrowLeft class="size-4" />
-                    Return to Blog
-                </a>
-            </div>
-        {:else if component}
-            <div class="prose dark:prose-invert prose-lg max-w-none prose-headings:text-primary-500 prose-links:text-primary-500 prose-code:text-primary-500">
-                {@render component()}
-            </div>
-        {:else}
-            <div class="card preset-outlined-surface-200-800 p-8 text-center">
-                <p class="opacity-75">Content not available.</p>
-            </div>
-        {/if}
+        <div class="prose dark:prose-invert prose-lg max-w-none prose-headings:text-primary-500 prose-links:text-primary-500 prose-code:text-primary-500">
+            {@html post.content.html}
+        </div>
     </article>
 
     <hr class="hr" />

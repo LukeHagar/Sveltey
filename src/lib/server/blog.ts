@@ -1,4 +1,5 @@
 import { dev } from '$app/environment';
+import { render } from 'svelte/server';
 
 export interface BlogPost {
 	title: string;
@@ -8,7 +9,7 @@ export interface BlogPost {
 	author: string;
 	tags: string[];
 	featured: boolean;
-	content: string;
+	content: any;
 }
 
 // Get all blog post files
@@ -30,7 +31,7 @@ const parsePostMetadata = async (filename: string, module: any): Promise<BlogPos
 		author: metadata.author || 'Anonymous',
 		tags: metadata.tags || [],
 		featured: metadata.featured || false,
-		content
+		content: render(content)
 	};
 };
 
