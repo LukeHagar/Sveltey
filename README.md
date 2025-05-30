@@ -1,5 +1,12 @@
+<div align="center">
+<picture>
+ <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/16b9c670-717f-4fec-9103-2eb6b75e79dc">
+ <img alt="Sveltey SaaS Template logo" src="https://github.com/user-attachments/assets/e58daf0b-2067-4fd9-8c72-a752cc4fcef6">
+</picture>
+</div>
 
 # 🚀 Sveltey - SvelteKit SaaS Template
+
 
 ![Sveltey SaaS Template](https://github.com/user-attachments/assets/5dc91129-ebc7-4458-98b6-1862c6de4428)
 
