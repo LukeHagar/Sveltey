@@ -9,6 +9,7 @@
 	import { onMount } from 'svelte';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
 	import '../app.css';
+	import SvelteyLogoLetter from '$lib/assets/Sveltey-logo-letter.svelte';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
@@ -66,16 +67,14 @@
 <Modal />
 
 <!-- Navigation Header -->
-<header class="bg-surface-50-950-token border-surface-200-700-token border-b">
+<header class="bg-surface-50-950-token border-surface-200-700-token border-b sticky top-0 z-50 backdrop-blur-xl">
 	<nav class="container mx-auto px-6 py-4">
 		<div class="flex items-center justify-between">
 			<!-- Left side - Brand and Main navigation -->
 			<div class="flex items-center space-x-8">
 				<!-- Brand -->
 				<a href="/" class="flex items-center gap-2 transition-opacity hover:opacity-75">
-					<div class="bg-primary-500 flex h-8 w-8 items-center justify-center rounded-lg">
-						<span class="text-lg font-bold text-white">S</span>
-					</div>
+					<SvelteyLogoLetter size="size-12" />
 					<span class="text-xl font-bold">Sveltey</span>
 				</a>
 

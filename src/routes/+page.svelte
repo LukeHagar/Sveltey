@@ -100,26 +100,26 @@
         <h2 class="h2">Built With Modern Tools</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-orange-500 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">S</span>
+                <div class="mx-auto w-16 h-16 bg-primary-500 rounded-lg flex items-center justify-center">
+                    <span class="text-primary-contrast-500 font-bold text-xl">S</span>
                 </div>
                 <p class="text-sm">SvelteKit</p>
             </div>
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">S</span>
+                <div class="mx-auto w-16 h-16 bg-secondary-500 rounded-lg flex items-center justify-center">
+                    <span class="text-secondary-contrast-500 font-bold text-xl">S</span>
                 </div>
                 <p class="text-sm">Supabase</p>
             </div>
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">T</span>
+                <div class="mx-auto w-16 h-16 bg-tertiary-500 rounded-lg flex items-center justify-center">
+                    <span class="text-tertiary-contrast-500 font-bold text-xl">T</span>
                 </div>
                 <p class="text-sm">TypeScript</p>
             </div>
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">S</span>
+                <div class="mx-auto w-16 h-16 bg-surface-500 rounded-lg flex items-center justify-center">
+                    <span class="text-surface-contrast-500 font-bold text-xl">S</span>
                 </div>
                 <p class="text-sm">Skeleton UI</p>
             </div>
