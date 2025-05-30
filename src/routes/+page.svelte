@@ -33,8 +33,8 @@
         </div>
         <!-- Hero Image/Graphic -->
         <div class="order-1 lg:order-2 flex justify-center">
-            <div class="w-64 h-64 lg:w-96 lg:h-96 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full flex items-center justify-center shadow-2xl">
-                <Rocket class="size-24 lg:size-32 text-primary-500" />
+            <div class="size-64 lg:size-96 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full flex items-center justify-center shadow-2xl">
+                <Rocket class="size-32 lg:size-64 text-primary-500" />
             </div>
         </div>
     </header>
