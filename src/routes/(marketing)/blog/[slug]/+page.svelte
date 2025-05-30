@@ -1,6 +1,4 @@
 <script lang="ts">
-    import type { PageData } from './$types';
-    import type { BlogPost } from '$lib/blog';
     import { onMount } from 'svelte';
     import { Calendar, User, Tag, Share2, ArrowLeft, Star, Twitter, Linkedin } from '@lucide/svelte';
 
@@ -21,7 +19,7 @@
     onMount(async () => {
         try {
             // Dynamically import the markdown component
-            const module = await import(`../../../lib/posts/${data.slug}.md`);
+            const module = import.meta.glob(`$lib/posts/${data.slug}.md`);
             component = module.default;
         } catch (err) {
             console.error('Failed to load blog post component:', err);

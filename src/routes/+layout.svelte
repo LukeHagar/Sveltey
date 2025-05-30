@@ -30,7 +30,7 @@
 		const baseClasses = 'btn flex items-center gap-2';
 
 		if (isActive) {
-			return `${baseClasses} preset-filled-primary-500 cursor-default`;
+			return `${baseClasses} preset-filled-primary-500 text-on-primary-500 cursor-default`;
 		}
 		return `${baseClasses} preset-ghost-surface-200-800`;
 	}
@@ -41,7 +41,7 @@
 		const baseClasses = 'btn flex items-center justify-start gap-2';
 
 		if (isActive) {
-			return `${baseClasses} preset-filled-primary-500 cursor-default`;
+			return `${baseClasses} preset-filled-primary-500 text-on-primary-500 cursor-default`;
 		}
 		return `${baseClasses} preset-ghost-surface-200-800`;
 	}
