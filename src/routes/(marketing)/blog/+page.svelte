@@ -38,7 +38,7 @@
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {#each featuredPosts as post}
-                        <article class="card preset-outlined-surface-200-800 p-6 md:p-8 space-y-4 hover:scale-105 transition-all duration-300 group">
+                        <a href="/blog/{post.slug}" class="card preset-outlined-primary-500 p-6 md:p-8 space-y-4 hover:scale-105 transition-all duration-300 group">
                             <div class="flex items-center justify-between">
                                 <span class="badge preset-filled-primary-500 flex items-center gap-1">
                                     <Star class="size-3" />
@@ -51,9 +51,9 @@
                             </div>
                             
                             <h3 class="h3 group-hover:text-primary-500 transition-colors">
-                                <a href="/blog/{post.slug}" class="block">
+                                <div class="block">
                                     {post.title}
-                                </a>
+                                </div>
                             </h3>
                             
                             <p class="opacity-75">{post.excerpt}</p>
@@ -72,7 +72,7 @@
                                     {/each}
                                 </div>
                             </div>
-                        </article>
+                        </a>
                     {/each}
                 </div>
             </section>
@@ -87,16 +87,16 @@
                 <h2 class="h2 text-center">Recent Posts</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {#each regularPosts as post}
-                        <article class="card preset-outlined-surface-200-800 p-4 md:p-6 space-y-4 hover:scale-105 transition-all duration-300 group">
+                        <a href="/blog/{post.slug}" class="card preset-outlined-primary-500 p-4 md:p-6 space-y-4 hover:scale-105 transition-all duration-300 group">
                             <div class="flex items-center gap-1 text-sm opacity-75">
                                 <Calendar class="size-4" />
                                 {formatDate(post.publishedAt)}
                             </div>
                             
                             <h3 class="h4 group-hover:text-primary-500 transition-colors">
-                                <a href="/blog/{post.slug}" class="block">
+                                <div class="block">
                                     {post.title}
-                                </a>
+                                </div>
                             </h3>
                             
                             <p class="opacity-75 text-sm">{post.excerpt}</p>
@@ -117,7 +117,7 @@
                                     </div>
                                 {/if}
                             </div>
-                        </article>
+                        </a>
                     {/each}
                 </div>
             </section>

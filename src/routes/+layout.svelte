@@ -67,7 +67,7 @@
 <Modal />
 
 <!-- Navigation Header -->
-<header class="bg-surface-50-950-token border-surface-200-700-token border-b sticky top-0 z-50 backdrop-blur-xl">
+<header class="bg-surface-50-950-token border-surface-200-700-token border-b sticky top-0 z-50 backdrop-blur-2xl">
 	<nav class="container mx-auto px-6 py-4">
 		<div class="flex items-center justify-between">
 			<!-- Left side - Brand and Main navigation -->

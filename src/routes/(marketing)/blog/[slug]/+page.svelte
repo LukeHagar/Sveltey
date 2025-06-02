@@ -55,7 +55,7 @@
         </div>
 
         <!-- Author and Tags -->
-        <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+        <div class="card preset-outlined-primary-500 p-6 space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
                     <User class="size-5 text-primary-500" />
@@ -70,7 +70,7 @@
                         href="https://twitter.com/intent/tweet?text={encodeURIComponent(post.title)}&url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="btn btn-sm preset-outlined-surface-200-800"
+                        class="btn btn-sm preset-outlined-secondary-500"
                         title="Share on Twitter"
                     >
                         <Twitter class="size-4" />
@@ -79,7 +79,7 @@
                         href="https://www.linkedin.com/sharing/share-offsite/?url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="btn btn-sm preset-outlined-surface-200-800"
+                        class="btn btn-sm preset-outlined-secondary-500"
                         title="Share on LinkedIn"
                     >
                         <Linkedin class="size-4" />
@@ -92,7 +92,7 @@
                     <Tag class="size-4 text-primary-500" />
                     <span class="text-sm font-medium">Tags:</span>
                     {#each post.tags as tag}
-                        <span class="badge preset-outlined-surface-200-800 text-xs flex items-center gap-1">
+                        <span class="badge preset-outlined-tertiary-500 text-xs flex items-center gap-1">
                             {tag}
                         </span>
                     {/each}
@@ -101,7 +101,7 @@
         </div>
     </header>
 
-    <hr class="hr" />
+    <hr class="hr bg-primary-500" />
 
     <!-- Article Content -->
     <article class="prose dark:prose-invert prose-lg max-w-none">

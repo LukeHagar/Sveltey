@@ -25,7 +25,7 @@
             ],
             popular: false,
             buttonText: data.session ? 'Current Plan' : 'Get Started',
-            buttonClass: 'preset-outlined-surface-200-800'
+            buttonClass: 'preset-outlined-primary-500'
         },
         {
             name: 'Pro',
@@ -79,7 +79,7 @@
     <!-- Pricing Cards -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
         {#each plans as plan}
-            <div class="card {plan.popular ? 'preset-outlined-primary-500 relative' : 'preset-outlined-secondary-500'} p-6 md:p-8 space-y-6 {plan.popular ? 'scale-105 shadow-2xl' : 'hover:scale-105'} transition-all duration-300">
+            <div class="card {plan.popular ? 'preset-outlined-primary-500 relative' : 'preset-outlined-secondary-500'} p-6 md:p-8 space-y-6 {plan.popular ? 'scale-105 shadow-2xl' : 'hover:scale-105'} transition-all duration-300 flex flex-col">
                 
                 {#if plan.popular}
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -117,7 +117,7 @@
                 </div>
 
                 <!-- Features -->
-                <ul class="space-y-3">
+                <ul class="space-y-3 grow">
                     {#each plan.features as feature}
                         <li class="flex items-center gap-3">
                             {#if feature.included}
