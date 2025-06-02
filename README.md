@@ -205,7 +205,7 @@ The analytics script is already integrated in `src/app.html`:
 
 - **Privacy-First**: No cookies, no personal data collection
 - **GDPR Compliant**: No consent banners required
-- **Lightweight**: < 1KB script size
+- **Lightweight**: Less than 1KB script size
 - **Real-time**: Live visitor tracking
 - **Goal Tracking**: Custom event tracking available
 
