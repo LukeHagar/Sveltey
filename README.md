@@ -26,6 +26,12 @@ A modern, production-ready SaaS template built with [SvelteKit 2](https://kit.sv
     - [Environment Variables](#environment-variables)
     - [Supabase Setup](#supabase-setup)
     - [Stripe Setup](#stripe-setup)
+    - [Analytics Setup (Plausible)](#analytics-setup-plausible)
+      - [Current Configuration](#current-configuration)
+      - [Customizing for Your Domain](#customizing-for-your-domain)
+      - [Analytics Features](#analytics-features)
+      - [Custom Events (Optional)](#custom-events-optional)
+      - [Alternative Analytics](#alternative-analytics)
   - [🎯 Customization](#-customization)
     - [Branding](#branding)
     - [Components](#components)
@@ -77,6 +83,7 @@ A modern, production-ready SaaS template built with [SvelteKit 2](https://kit.sv
 - **User Analytics**: Basic user metrics and insights
 - **Real-time Updates**: Live data updates using Supabase real-time
 - **Data Visualization**: Charts and graphs for key metrics
+- **Privacy-First Analytics**: Built-in Plausible Analytics integration for GDPR-compliant tracking
 
 ### 💳 Payments & Subscriptions - Planned
 - **Stripe Integration**: Ready-to-use payment processing
@@ -111,6 +118,7 @@ Visit `http://localhost:5173` and start building your SaaS!
 - **Authentication**: Supabase Auth
 - **UI Components**: Skeleton UI
 - **Styling**: Tailwind CSS
+- **Analytics**: Plausible Analytics
 <!-- - **Payments**: Stripe -->
 - **Deployment**: Vercel/Netlify ready
 - **Language**: TypeScript
@@ -172,6 +180,53 @@ STRIPE_WEBHOOK_SECRET=your_webhook_secret
 3. Configure your products and pricing
 4. Set up webhooks for subscription events
 
+### Analytics Setup (Plausible)
+
+Sveltey comes pre-configured with [Plausible Analytics](https://plausible.io/) - a lightweight, privacy-focused analytics solution that's GDPR compliant by default.
+
+#### Current Configuration
+
+The analytics script is already integrated in `src/app.html`:
+
+```html
+<script defer data-domain="sveltey.dev" src="https://events.plygrnd.org/js/script.js"></script>
+```
+
+#### Customizing for Your Domain
+
+1. **Self-hosted Plausible**: If using your own Plausible instance, update the script source
+2. **Plausible Cloud**: Change to the official Plausible script:
+   ```html
+   <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.js"></script>
+   ```
+3. **Update Domain**: Replace `data-domain="sveltey.dev"` with your actual domain
+
+#### Analytics Features
+
+- **Privacy-First**: No cookies, no personal data collection
+- **GDPR Compliant**: No consent banners required
+- **Lightweight**: < 1KB script size
+- **Real-time**: Live visitor tracking
+- **Goal Tracking**: Custom event tracking available
+
+#### Custom Events (Optional)
+
+Add custom event tracking for user actions:
+
+```javascript
+// Track custom events
+plausible('signup', {props: {plan: 'premium'}});
+plausible('purchase', {props: {amount: 99}});
+```
+
+#### Alternative Analytics
+
+To use a different analytics provider:
+
+1. Remove the Plausible script from `src/app.html`
+2. Add your preferred analytics script (Google Analytics, Fathom, etc.)
+3. Update the privacy policy accordingly
+
 ## 🎯 Customization
 
 ### Branding
@@ -185,7 +240,7 @@ STRIPE_WEBHOOK_SECRET=your_webhook_secret
 - Skeleton UI provides the base component library
 - Easy to theme and customize with CSS variables
 
-## 🔍 SEO & Meta Tags
+## 🔍 SEO \& Meta Tags
 
 Sveltey comes with a comprehensive SEO system built on top of `svelte-meta-tags` that provides automatic meta tag management, OpenGraph support, and Twitter Card integration.
 
