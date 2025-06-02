@@ -25,7 +25,7 @@
                         <Star class="size-5" />
                         <span>Get Started Free</span>
                     </a>
-                    <a href="/auth/login" class="btn btn-lg preset-outlined-surface-200-800">
+                    <a href="/auth/login" class="btn btn-lg preset-outlined-primary-500">
                         <span>Sign In</span>
                     </a>
                 {/if}
@@ -97,31 +97,31 @@
 
     <!-- Technologies Section -->
     <section class="text-center space-y-8">
-        <h2 class="h2">Built With Modern Tools</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
+        <h2 class="h2">Built With <span class="text-primary-500">Modern Tools</span></h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-primary-500 rounded-lg flex items-center justify-center">
-                    <span class="text-primary-contrast-500 font-bold text-xl">S</span>
+                <div class="mx-auto flex items-center justify-center">
+                    <img src="/svelte-logo-square.svg" alt="SvelteKit" class="size-16">
                 </div>
-                <p class="text-sm">SvelteKit</p>
+                <p class="text-lg font-extrabold">SvelteKit</p>
             </div>
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-secondary-500 rounded-lg flex items-center justify-center">
-                    <span class="text-secondary-contrast-500 font-bold text-xl">S</span>
+                <div class="mx-auto flex items-center justify-center">
+                    <img src="/supabase-logo-icon.svg" alt="Supabase" class="size-16">
                 </div>
-                <p class="text-sm">Supabase</p>
+                <p class="text-lg font-extrabold">Supabase</p>
             </div>
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-tertiary-500 rounded-lg flex items-center justify-center">
-                    <span class="text-tertiary-contrast-500 font-bold text-xl">T</span>
+                <div class="mx-auto flex items-center justify-center">
+                    <img src="/ts-logo-512.svg" alt="TypeScript" class="size-16">
                 </div>
-                <p class="text-sm">TypeScript</p>
+                <p class="text-lg font-extrabold">TypeScript</p>
             </div>
             <div class="space-y-2">
-                <div class="mx-auto w-16 h-16 bg-surface-500 rounded-lg flex items-center justify-center">
-                    <span class="text-surface-contrast-500 font-bold text-xl">S</span>
+                <div class="mx-auto flex items-center justify-center">
+                    <img src="/skeleton.svg" alt="Skeleton UI" class="size-16">
                 </div>
-                <p class="text-sm">Skeleton UI</p>
+                <p class="text-lg font-extrabold">Skeleton UI</p>
             </div>
         </div>
     </section>
