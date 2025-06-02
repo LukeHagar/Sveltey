@@ -143,6 +143,8 @@
                                 type="button"
                                 class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500"
                                 disabled={true}
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                title={showPassword ? 'Hide password' : 'Show password'}
                             >
                                 {#if showPassword}
                                     <EyeOff class="size-4" />
@@ -173,6 +175,8 @@
                                 type="button"
                                 class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500"
                                 disabled={true}
+                                aria-label={showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'}
+                                title={showConfirmPassword ? 'Hide confirm password' : 'Show confirm password'}
                             >
                                 {#if showConfirmPassword}
                                     <EyeOff class="size-4" />

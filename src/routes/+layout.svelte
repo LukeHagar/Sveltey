@@ -2,14 +2,12 @@
 	import { invalidate } from '$app/navigation';
 	import { page } from '$app/state';
 	import { toaster } from '$lib';
-	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
-	import { Avatar, Modal, Toaster } from '@skeletonlabs/skeleton-svelte';
-	import { BookOpen, DollarSign, Home, LayoutDashboard, LogOut, User } from '@lucide/svelte';
+	import { Modal, Toaster } from '@skeletonlabs/skeleton-svelte';
 	import 'prism-themes/themes/prism-vsc-dark-plus.css';
 	import { onMount } from 'svelte';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
 	import '../app.css';
-	import SvelteyLogoLetter from '$lib/assets/Sveltey-logo-letter.svelte';
+	import Header from '$lib/components/Header.svelte';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
@@ -66,185 +64,7 @@
 <Toaster {toaster}></Toaster>
 <Modal />
 
-<!-- Navigation Header -->
-<header class="bg-surface-50-950-token border-surface-200-700-token border-b sticky top-0 z-50 backdrop-blur-2xl">
-	<nav class="container mx-auto px-6 py-4">
-		<div class="flex items-center justify-between">
-			<!-- Left side - Brand and Main navigation -->
-			<div class="flex items-center space-x-8">
-				<!-- Brand -->
-				<a href="/" class="flex items-center gap-2 transition-opacity hover:opacity-75">
-					<SvelteyLogoLetter size="size-12" />
-					<span class="text-xl font-bold">Sveltey</span>
-				</a>
-
-				<!-- Main Navigation -->
-				<div class="hidden items-center space-x-1 md:flex">
-					{#if isActivePath('/')}
-						<span class={getNavLinkClasses('/')} aria-current="page">
-							<Home class="size-4" />
-							<span>Home</span>
-						</span>
-					{:else}
-						<a href="/" class={getNavLinkClasses('/')}>
-							<Home class="size-4" />
-							<span>Home</span>
-						</a>
-					{/if}
-
-					{#if isActivePath('/pricing')}
-						<span class={getNavLinkClasses('/pricing')} aria-current="page">
-							<DollarSign class="size-4" />
-							<span>Pricing</span>
-						</span>
-					{:else}
-						<a href="/pricing" class={getNavLinkClasses('/pricing')}>
-							<DollarSign class="size-4" />
-							<span>Pricing</span>
-						</a>
-					{/if}
-
-					{#if isActivePath('/blog')}
-						<span class={getNavLinkClasses('/blog')} aria-current="page">
-							<BookOpen class="size-4" />
-							<span>Blog</span>
-						</span>
-					{:else}
-						<a href="/blog" class={getNavLinkClasses('/blog')}>
-							<BookOpen class="size-4" />
-							<span>Blog</span>
-						</a>
-					{/if}
-
-					{#if session}
-						{#if isActivePath('/app/dashboard')}
-							<span class={getNavLinkClasses('/app/dashboard')} aria-current="page">
-								<LayoutDashboard class="size-4" />
-								<span>Dashboard</span>
-							</span>
-						{:else}
-							<a href="/app/dashboard" class={getNavLinkClasses('/app/dashboard')}>
-								<LayoutDashboard class="size-4" />
-								<span>Dashboard</span>
-							</a>
-						{/if}
-					{/if}
-				</div>
-			</div>
-
-			<!-- Right side - User actions and theme switcher -->
-			<div class="flex items-center space-x-3">
-				<ThemeSwitch />
-
-				{#if session}
-					<!-- User Profile Section -->
-					<div class="border-surface-300-600-token flex items-center gap-3 border-l pl-3">
-						<Avatar
-							size="size-8"
-							src={session.user.user_metadata.avatar_url}
-							name={session.user.user_metadata.full_name || session.user.email}
-						/>
-						<div class="hidden md:block">
-							<p class="text-sm font-medium">
-								{session.user.user_metadata.full_name || session.user.email?.split('@')[0]}
-							</p>
-							<p class="text-xs opacity-75">{session.user.email}</p>
-						</div>
-						<form action="/auth/logout" method="POST" style="display: inline;">
-							<button
-								type="submit"
-								class="btn preset-outlined-surface-200-800 btn-sm flex items-center gap-2"
-								title="Sign Out"
-							>
-								<LogOut class="size-4" />
-								<span class="hidden sm:inline">Sign Out</span>
-							</button>
-						</form>
-					</div>
-				{:else}
-					<!-- Authentication Buttons -->
-					<div class="flex items-center gap-2">
-						{#if isActivePath('/auth')}
-							<span
-								class="btn preset-filled-primary-500 flex h-8 cursor-default items-center gap-2"
-								aria-current="page"
-							>
-								<User class="size-4" />
-								<span>Sign In</span>
-							</span>
-						{:else}
-							<a href="/auth" class="btn preset-outlined-surface-500 flex h-8 items-center gap-2">
-								<User class="size-4" />
-								<span>Sign In</span>
-							</a>
-						{/if}
-						<a
-							href="/auth?mode=signup"
-							class="btn preset-filled-primary-500 flex items-center gap-2"
-						>
-							<span>Get Started</span>
-						</a>
-					</div>
-				{/if}
-			</div>
-		</div>
-
-		<!-- Mobile Navigation Menu (Hidden by default, would need JS to toggle) -->
-		<div class="border-surface-300-600-token mt-4 border-t pt-4 md:hidden">
-			<div class="flex flex-col space-y-2">
-				{#if isActivePath('/')}
-					<span class={getMobileNavLinkClasses('/')} aria-current="page">
-						<Home class="size-4" />
-						<span>Home</span>
-					</span>
-				{:else}
-					<a href="/" class={getMobileNavLinkClasses('/')}>
-						<Home class="size-4" />
-						<span>Home</span>
-					</a>
-				{/if}
-
-				{#if isActivePath('/pricing')}
-					<span class={getMobileNavLinkClasses('/pricing')} aria-current="page">
-						<DollarSign class="size-4" />
-						<span>Pricing</span>
-					</span>
-				{:else}
-					<a href="/pricing" class={getMobileNavLinkClasses('/pricing')}>
-						<DollarSign class="size-4" />
-						<span>Pricing</span>
-					</a>
-				{/if}
-
-				{#if isActivePath('/blog')}
-					<span class={getMobileNavLinkClasses('/blog')} aria-current="page">
-						<BookOpen class="size-4" />
-						<span>Blog</span>
-					</span>
-				{:else}
-					<a href="/blog" class={getMobileNavLinkClasses('/blog')}>
-						<BookOpen class="size-4" />
-						<span>Blog</span>
-					</a>
-				{/if}
-
-				{#if session}
-					{#if isActivePath('/app/dashboard')}
-						<span class={getMobileNavLinkClasses('/app/dashboard')} aria-current="page">
-							<LayoutDashboard class="size-4" />
-							<span>Dashboard</span>
-						</span>
-					{:else}
-						<a href="/app/dashboard" class={getMobileNavLinkClasses('/app/dashboard')}>
-							<LayoutDashboard class="size-4" />
-							<span>Dashboard</span>
-						</a>
-					{/if}
-				{/if}
-			</div>
-		</div>
-	</nav>
-</header>
+<Header {data} />
 
 <!-- Main Content -->
 <main class="min-h-screen">

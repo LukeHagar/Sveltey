@@ -369,6 +369,8 @@
                                 type="button"
                                 class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-500"
                                 disabled={true}
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                title={showPassword ? 'Hide password' : 'Show password'}
                             >
                                 {#if showPassword}
                                     <EyeOff class="size-4" />
@@ -432,12 +434,14 @@
                         class="btn w-full flex items-center justify-center gap-3 {provider.color}"
                         onclick={() => handleOAuth(provider.provider)}
                         disabled={!provider.enabled || loading || oauthLoading !== ''}
+                        aria-label="{provider.description}"
+                        title={provider.enabled ? provider.description : `${provider.name} login is disabled in demo mode`}
                     >
                         {#if oauthLoading === provider.provider}
-                            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+                            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-current" aria-hidden="true"></div>
                             Connecting...
                         {:else}
-                            <provider.icon class="size-4" />
+                            <provider.icon class="size-4" aria-hidden="true" />
                             {provider.description}
                         {/if}
                     </button>

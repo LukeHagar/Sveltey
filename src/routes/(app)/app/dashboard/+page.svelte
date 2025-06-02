@@ -99,8 +99,10 @@
 				{#each dashboardStats as stat}
 					<div
 						class="card preset-outlined-surface-200-800 space-y-4 p-6 text-center transition-all duration-300 hover:scale-105"
+						role="article"
+						aria-label="{stat.label}: {stat.value}"
 					>
-						<stat.icon class={`mx-auto size-8 ${stat.color}`} />
+						<stat.icon class={`mx-auto size-8 ${stat.color}`} aria-hidden="true" />
 						<div class="space-y-1">
 							<div class="text-3xl font-bold">{stat.value}</div>
 							<p class="text-sm opacity-75">{stat.label}</p>
@@ -122,16 +124,26 @@
 					>
 						<action.icon
 							class="text-primary-500 size-10 transition-transform group-hover:scale-110"
+							aria-hidden="true"
 						/>
 						<h3 class="h4 group-hover:text-primary-500 transition-colors">{action.title}</h3>
 						<p class="text-sm opacity-75">{action.description}</p>
 
 						{#if action.available}
-							<a href={action.href} class="btn preset-filled-primary-500 w-full">
+							<a 
+								href={action.href} 
+								class="btn preset-filled-primary-500 w-full"
+								aria-label="{action.action} - {action.title}"
+							>
 								{action.action}
 							</a>
 						{:else}
-							<button class="btn preset-outlined-surface-200-800 w-full opacity-50" disabled>
+							<button 
+								class="btn preset-outlined-surface-200-800 w-full opacity-50" 
+								disabled
+								aria-label="{action.action} - {action.title} (Coming Soon)"
+								title="This feature is coming soon"
+							>
 								{action.action} (Coming Soon)
 							</button>
 						{/if}
@@ -146,7 +158,7 @@
 		<section class="space-y-8">
 			<div class="card preset-outlined-primary-500 space-y-6 p-8 text-center">
 				<div class="flex items-center justify-center gap-2">
-					<Star class="text-primary-500 size-8" />
+					<Star class="text-primary-500 size-8" aria-hidden="true" />
 					<h3 class="h3 text-primary-500">Current Plan: Starter</h3>
 				</div>
 				<p class="mx-auto max-w-2xl opacity-75">
@@ -154,12 +166,21 @@
 					limits, and priority support.
 				</p>
 				<div class="flex flex-col justify-center gap-4 sm:flex-row">
-					<a href="/pricing" class="btn preset-filled-primary-500">
-						<Star class="size-5" />
+					<a 
+						href="/pricing" 
+						class="btn preset-filled-primary-500"
+						aria-label="Upgrade your plan to unlock premium features"
+					>
+						<Star class="size-5" aria-hidden="true" />
 						<span>Upgrade Plan</span>
 					</a>
-					<button class="btn preset-outlined-surface-200-800" disabled>
-						<BarChart class="size-5" />
+					<button 
+						class="btn preset-outlined-surface-200-800" 
+						disabled
+						aria-label="View usage statistics (Coming Soon)"
+						title="Usage statistics feature is coming soon"
+					>
+						<BarChart class="size-5" aria-hidden="true" />
 						<span>View Usage</span>
 					</button>
 				</div>
@@ -170,17 +191,27 @@
 		<section class="space-y-8">
 			<h2 class="h2 text-center">Recent Activity</h2>
 			<div class="card preset-outlined-surface-200-800 space-y-4 p-8 text-center">
-				<BarChart class="text-primary-500 mx-auto size-16 opacity-50" />
+				<BarChart class="text-primary-500 mx-auto size-16 opacity-50" aria-hidden="true" />
 				<h3 class="h4">No recent activity</h3>
 				<p class="opacity-75">
 					Start using our services to see your activity here. Create your first project or make an
 					API call to get started.
 				</p>
 				<div class="flex flex-col justify-center gap-4 sm:flex-row">
-					<button class="btn preset-filled-primary-500" disabled>
+					<button 
+						class="btn preset-filled-primary-500" 
+						disabled
+						aria-label="Create new project (Coming Soon)"
+						title="Project creation feature is coming soon"
+					>
 						Create Project (Coming Soon)
 					</button>
-					<button class="btn preset-outlined-surface-200-800" disabled>
+					<button 
+						class="btn preset-outlined-surface-200-800" 
+						disabled
+						aria-label="View documentation (Coming Soon)"
+						title="Documentation feature is coming soon"
+					>
 						View Documentation (Coming Soon)
 					</button>
 				</div>
@@ -189,17 +220,25 @@
 	{:else if session === null}
 		<!-- Access Denied -->
 		<div class="card preset-outlined-error-500 mx-auto max-w-2xl space-y-6 p-8 text-center md:p-12">
-			<Shield class="text-error-500 mx-auto size-16" />
+			<Shield class="text-error-500 mx-auto size-16" aria-hidden="true" />
 			<h2 class="h3">Access Denied</h2>
 			<p class="opacity-75">
 				You need to be logged in to access your dashboard. Please sign in to continue.
 			</p>
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
-				<a href="/auth/login" class="btn preset-filled-primary-500">
-					<User class="size-5" />
+				<a 
+					href="/auth/login" 
+					class="btn preset-filled-primary-500"
+					aria-label="Sign in to access your dashboard"
+				>
+					<User class="size-5" aria-hidden="true" />
 					<span>Sign In</span>
 				</a>
-				<a href="/auth/signup" class="btn preset-outlined-surface-200-800">
+				<a 
+					href="/auth/signup" 
+					class="btn preset-outlined-surface-200-800"
+					aria-label="Create new account to get started"
+				>
 					<span>Create Account</span>
 				</a>
 			</div>
@@ -208,8 +247,13 @@
 		<!-- Loading State -->
 		<div
 			class="card preset-outlined-surface-200-800 mx-auto max-w-2xl space-y-4 p-8 text-center md:p-12"
+			role="status"
+			aria-live="polite"
 		>
-			<div class="border-primary-500 mx-auto h-12 w-12 animate-spin rounded-full border-b-2"></div>
+			<div 
+				class="border-primary-500 mx-auto h-12 w-12 animate-spin rounded-full border-b-2"
+				aria-label="Loading dashboard"
+			></div>
 			<h3 class="h4">Loading your dashboard...</h3>
 			<p class="opacity-75">Please wait while we prepare your personalized experience.</p>
 		</div>

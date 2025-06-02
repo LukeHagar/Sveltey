@@ -52,7 +52,7 @@
                 <h1 class="h1">Get in <span class="text-primary-500">Touch</span></h1>
             </div>
             <p class="text-xl opacity-75 max-w-2xl mx-auto">
-                Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                Have questions? We'd love to hear from you. <br> Send us a message and we'll respond as soon as possible.
             </p>
         </header>
 
@@ -61,7 +61,7 @@
             <div class="space-y-8">
                 <!-- Contact Methods -->
                 <div class="space-y-6">
-                    <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                    <div class="card preset-outlined-surface-500 p-6 space-y-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
                                 <Mail class="size-5 text-white" />
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                    <div class="card preset-outlined-surface-500 p-6 space-y-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-secondary-500 rounded-lg flex items-center justify-center">
                                 <Phone class="size-5 text-white" />
@@ -85,7 +85,7 @@
                         </div>
                     </div>
 
-                    <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                    <div class="card preset-outlined-surface-500 p-6 space-y-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-tertiary-500 rounded-lg flex items-center justify-center">
                                 <MapPin class="size-5 text-white" />
@@ -99,7 +99,7 @@
                 </div>
 
                 <!-- Response Time -->
-                <div class="card preset-filled-primary-500 p-6 text-center">
+                <div class="card preset-outlined-primary-500 p-6 text-center">
                     <Clock class="size-8 mx-auto mb-3" />
                     <h3 class="h4 mb-2">Quick Response</h3>
                     <p class="text-sm opacity-90">
@@ -110,7 +110,7 @@
 
             <!-- Contact Form -->
             <div class="lg:col-span-2">
-                <div class="card preset-outlined-surface-200-800 p-8">
+                <div class="card preset-outlined-surface-500 p-8">
                     <div class="space-y-6">
                         <div>
                             <h2 class="h3 mb-2">Send us a message</h2>
@@ -124,7 +124,7 @@
                                         Name *
                                     </label>
                                     <input 
-                                        class="input preset-outlined-surface-200-800" 
+                                        class="input preset-outlined-surface-500" 
                                         type="text" 
                                         id="name" 
                                         bind:value={formData.name} 
@@ -139,7 +139,7 @@
                                         Email *
                                     </label>
                                     <input 
-                                        class="input preset-outlined-surface-200-800" 
+                                        class="input preset-outlined-surface-500" 
                                         type="email" 
                                         id="email" 
                                         bind:value={formData.email} 
@@ -155,7 +155,7 @@
                                     Subject *
                                 </label>
                                 <input 
-                                    class="input preset-outlined-surface-200-800" 
+                                    class="input preset-outlined-surface-500" 
                                     type="text" 
                                     id="subject" 
                                     bind:value={formData.subject} 
@@ -170,7 +170,7 @@
                                     Message *
                                 </label>
                                 <textarea 
-                                    class="textarea preset-outlined-surface-200-800" 
+                                    class="textarea preset-outlined-surface-500" 
                                     id="message" 
                                     bind:value={formData.message} 
                                     placeholder="Tell us more about your question or feedback..."
@@ -184,12 +184,13 @@
                                 type="submit" 
                                 class="btn preset-filled-primary-500 w-full flex items-center justify-center gap-2" 
                                 disabled={loading}
+                                aria-label={loading ? 'Sending message...' : 'Send message'}
                             >
                                 {#if loading}
-                                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                    <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white" aria-hidden="true"></div>
                                     Sending...
                                 {:else}
-                                    <Send class="size-4" />
+                                    <Send class="size-4" aria-hidden="true" />
                                     Send Message
                                 {/if}
                             </button>

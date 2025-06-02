@@ -121,9 +121,9 @@
                     {#each plan.features as feature}
                         <li class="flex items-center gap-3">
                             {#if feature.included}
-                                <Check class="size-5 text-success-500 flex-shrink-0" />
+                                <Check class="size-5 text-success-500 flex-shrink-0" aria-hidden="true" />
                             {:else}
-                                <X class="size-5 text-error-500 flex-shrink-0" />
+                                <X class="size-5 text-error-500 flex-shrink-0" aria-hidden="true" />
                             {/if}
                             <span class="{feature.included ? '' : 'opacity-50'}">{feature.name}</span>
                         </li>
@@ -131,7 +131,10 @@
                 </ul>
 
                 <!-- CTA Button -->
-                <button class="btn w-full {plan.buttonClass}">
+                <button 
+                    class="btn w-full {plan.buttonClass}"
+                    aria-label="{plan.buttonText} - {plan.name} plan"
+                >
                     {plan.buttonText}
                 </button>
             </div>

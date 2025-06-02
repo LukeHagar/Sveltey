@@ -37,3 +37,8 @@
 div.prose a {
     @apply anchor
 }
+
+a.disabled {
+    @apply pointer-events-none opacity-50;
+
+}

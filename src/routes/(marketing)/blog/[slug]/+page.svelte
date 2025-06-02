@@ -72,8 +72,9 @@
                         rel="noopener noreferrer"
                         class="btn btn-sm preset-outlined-secondary-500"
                         title="Share on Twitter"
+                        aria-label="Share this article on Twitter"
                     >
-                        <Twitter class="size-4" />
+                        <Twitter class="size-4" aria-hidden="true" />
                     </a>
                     <a 
                         href="https://www.linkedin.com/sharing/share-offsite/?url={encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}"
@@ -81,8 +82,9 @@
                         rel="noopener noreferrer"
                         class="btn btn-sm preset-outlined-secondary-500"
                         title="Share on LinkedIn"
+                        aria-label="Share this article on LinkedIn"
                     >
-                        <Linkedin class="size-4" />
+                        <Linkedin class="size-4" aria-hidden="true" />
                     </a>
                 </div>
             </div>
@@ -129,8 +131,9 @@
                     target="_blank" 
                     rel="noopener noreferrer"
                     class="btn btn-sm preset-outlined-surface-200-800"
+                    aria-label="Share this article on Twitter"
                 >
-                    <Twitter class="size-4" />
+                    <Twitter class="size-4" aria-hidden="true" />
                     <span>Twitter</span>
                 </a>
                 <a 
@@ -138,8 +141,9 @@
                     target="_blank" 
                     rel="noopener noreferrer"
                     class="btn btn-sm preset-outlined-surface-200-800"
+                    aria-label="Share this article on LinkedIn"
                 >
-                    <Linkedin class="size-4" />
+                    <Linkedin class="size-4" aria-hidden="true" />
                     <span>LinkedIn</span>
                 </a>
             </div>

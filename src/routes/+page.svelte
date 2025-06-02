@@ -16,16 +16,28 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
                 {#if data.session}
-                    <a href="/app/dashboard" class="btn btn-lg preset-filled-primary-500">
-                        <Rocket class="size-5" />
+                    <a 
+                        href="/app/dashboard" 
+                        class="btn btn-lg preset-filled-primary-500"
+                        aria-label="Go to your dashboard"
+                    >
+                        <Rocket class="size-5" aria-hidden="true" />
                         <span>Go to Dashboard</span>
                     </a>
                 {:else}
-                    <a href="/auth/signup" class="btn btn-lg preset-filled-primary-500">
-                        <Star class="size-5" />
+                    <a 
+                        href="/auth/signup" 
+                        class="btn btn-lg preset-filled-primary-500"
+                        aria-label="Sign up for free account"
+                    >
+                        <Star class="size-5" aria-hidden="true" />
                         <span>Get Started Free</span>
                     </a>
-                    <a href="/auth/login" class="btn btn-lg preset-outlined-primary-500">
+                    <a 
+                        href="/auth/login" 
+                        class="btn btn-lg preset-outlined-primary-500"
+                        aria-label="Sign in to existing account"
+                    >
                         <span>Sign In</span>
                     </a>
                 {/if}
@@ -33,8 +45,8 @@
         </div>
         <!-- Hero Image/Graphic -->
         <div class="order-1 lg:order-2 flex justify-center">
-            <div class="size-64 lg:size-96 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full flex items-center justify-center shadow-2xl animate-tilt">
-                <Rocket class="size-32 lg:size-64 text-primary-500" />
+            <div class="size-64 lg:size-96 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full flex items-center justify-center shadow-2xl animate-tilt" role="img" aria-label="SaaS launch illustration">
+                <Rocket class="size-32 lg:size-64 text-primary-500" aria-hidden="true" />
             </div>
         </div>
     </header>
@@ -68,7 +80,7 @@
     <!-- Features Section -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
         <div class="card preset-outlined-surface-200-800 p-4 md:p-8 space-y-4">
-            <Database class="stroke-primary-500 size-10" />
+            <Database class="stroke-primary-500 size-10" aria-hidden="true" />
             <h3 class="h3">Supabase Ready</h3>
             <p class="opacity-75">
                 Authentication, real-time database, and file storage configured out of the box. 
@@ -76,7 +88,7 @@
             </p>
         </div>
         <div class="card preset-outlined-surface-200-800 p-4 md:p-8 space-y-4">
-            <Zap class="stroke-primary-500 size-10" />
+            <Zap class="stroke-primary-500 size-10" aria-hidden="true" />
             <h3 class="h3">Lightning Fast</h3>
             <p class="opacity-75">
                 Built with SvelteKit for maximum performance. Server-side rendering, 
@@ -84,7 +96,7 @@
             </p>
         </div>
         <div class="card preset-outlined-surface-200-800 p-4 md:p-8 space-y-4">
-            <GitBranch class="stroke-primary-500 size-10" />
+            <GitBranch class="stroke-primary-500 size-10" aria-hidden="true" />
             <h3 class="h3">Developer Experience</h3>
             <p class="opacity-75">
                 TypeScript, ESLint, Prettier, and comprehensive documentation. 
@@ -135,13 +147,21 @@
             <p class="opacity-75">Join thousands of developers who trust our template to kickstart their SaaS projects.</p>
         </div>
         {#if !data.session}
-            <a href="/auth/signup" class="btn md:btn-lg preset-filled-primary-500">
-                <Users class="size-5" />
+            <a 
+                href="/auth/signup" 
+                class="btn md:btn-lg preset-filled-primary-500"
+                aria-label="Start building your SaaS today"
+            >
+                <Users class="size-5" aria-hidden="true" />
                 <span>Start Building Today</span>
             </a>
         {:else}
-            <a href="/pricing" class="btn md:btn-lg preset-filled-secondary-500">
-                <Star class="size-5" />
+            <a 
+                href="/pricing" 
+                class="btn md:btn-lg preset-filled-secondary-500"
+                aria-label="View pricing plans"
+            >
+                <Star class="size-5" aria-hidden="true" />
                 <span>View Pricing</span>
             </a>
         {/if}

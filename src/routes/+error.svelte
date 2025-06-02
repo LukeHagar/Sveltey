@@ -74,21 +74,30 @@
             <button 
                 onclick={() => window.history.back()} 
                 class="btn preset-outlined-surface-200-800 flex items-center gap-2"
+                aria-label="Go back to previous page"
+                title="Go back to previous page"
             >
-                <ArrowLeft class="size-4" />
+                <ArrowLeft class="size-4" aria-hidden="true" />
                 <span>Go Back</span>
             </button>
             
             <button 
                 onclick={() => window.location.reload()} 
                 class="btn preset-outlined-surface-200-800 flex items-center gap-2"
+                aria-label="Reload current page"
+                title="Reload current page"
             >
-                <RefreshCw class="size-4" />
+                <RefreshCw class="size-4" aria-hidden="true" />
                 <span>Try Again</span>
             </button>
             
-            <a href="/" class="btn preset-filled-primary-500 flex items-center gap-2">
-                <Home class="size-4" />
+            <a 
+                href="/" 
+                class="btn preset-filled-primary-500 flex items-center gap-2"
+                aria-label="Return to homepage"
+                title="Return to homepage"
+            >
+                <Home class="size-4" aria-hidden="true" />
                 <span>Go Home</span>
             </a>
         </div>
