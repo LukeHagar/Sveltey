@@ -1,5 +1,5 @@
 // src/lib/supabaseClient.ts
-import { createBrowserClient, isBrowser, parse } from '@supabase/ssr';
+import { createBrowserClient } from '@supabase/ssr';
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
 if (!PUBLIC_SUPABASE_URL) {

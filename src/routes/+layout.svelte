@@ -2,12 +2,15 @@
 	import { invalidate } from '$app/navigation';
 	import { page } from '$app/state';
 	import { toaster } from '$lib';
+	import Header from '$lib/components/Header.svelte';
 	import { Modal, Toaster } from '@skeletonlabs/skeleton-svelte';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import 'prism-themes/themes/prism-vsc-dark-plus.css';
 	import { onMount } from 'svelte';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
 	import '../app.css';
-	import Header from '$lib/components/Header.svelte';
+
+	injectSpeedInsights();
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
