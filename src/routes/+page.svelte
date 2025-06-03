@@ -7,7 +7,7 @@
 	let { data } = $props();
 </script>
 
-<div class="container mx-auto space-y-20 py-20 p-4">
+<div class="container mx-auto space-y-20 p-4 py-20">
 	<!-- Hero Section -->
 	<header class="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto]">
 		<div class="order-2 max-w-3xl space-y-8 lg:order-1">
@@ -57,13 +57,13 @@
 		</div>
 	</header>
 
-    <div class="flex justify-center">
+	<div class="flex justify-center">
 		<hr class="hr border-surface-500 max-w-64" />
 	</div>
 
 	<!-- Stats Section -->
 	<section>
-		<div class="flex gap-20 text-center flex-wrap font-bold justify-center">
+		<div class="flex flex-wrap justify-center gap-20 text-center font-bold">
 			<div class="space-y-1">
 				<span class="text-7xl">99%</span>
 				<p class="text-primary-500">Faster Development</p>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="space-y-1">
 				<span class="text-7xl">100%</span>
-				<p class="text-primary-500 ">Type Safe</p>
+				<p class="text-primary-500">Type Safe</p>
 			</div>
 			<div class="space-y-1">
 				<span class="text-7xl">∞</span>
@@ -83,13 +83,13 @@
 		</div>
 	</section>
 
-    <div class="flex justify-center">
+	<div class="flex justify-center">
 		<hr class="hr border-surface-500 max-w-64" />
 	</div>
 
 	<!-- Features Section -->
 	<section class="flex flex-wrap gap-4">
-		<div class="card preset-outlined-surface-500 space-y-4 p-4 md:p-8 flex-1 min-w-[250px]">
+		<div class="card preset-outlined-surface-500 min-w-[250px] flex-1 space-y-4 p-4 md:p-8">
 			<Database class="stroke-primary-500 size-10" aria-hidden="true" />
 			<h3 class="h3">Supabase Ready</h3>
 			<p class="opacity-75">
@@ -97,7 +97,7 @@
 				your Supabase credentials and you're ready to go.
 			</p>
 		</div>
-		<div class="card preset-outlined-surface-500 space-y-4 p-4 md:p-8 flex-1 min-w-[250px]">
+		<div class="card preset-outlined-surface-500 min-w-[250px] flex-1 space-y-4 p-4 md:p-8">
 			<Zap class="stroke-primary-500 size-10" aria-hidden="true" />
 			<h3 class="h3">Lightning Fast</h3>
 			<p class="opacity-75">
@@ -105,7 +105,7 @@
 				blazing fast navigation included.
 			</p>
 		</div>
-		<div class="card preset-outlined-surface-500 space-y-4 p-4 md:p-8 flex-1 min-w-[250px]">
+		<div class="card preset-outlined-surface-500 min-w-[250px] flex-1 space-y-4 p-4 md:p-8">
 			<GitBranch class="stroke-primary-500 size-10" aria-hidden="true" />
 			<h3 class="h3">Developer Experience</h3>
 			<p class="opacity-75">
@@ -115,7 +115,7 @@
 		</div>
 	</section>
 
-    <div class="flex justify-center">
+	<div class="flex justify-center">
 		<hr class="hr border-surface-500 max-w-64" />
 	</div>
 
@@ -127,30 +127,42 @@
 				<div class="mx-auto flex items-center justify-center">
 					<img src="/svelte-logo-square.svg" alt="SvelteKit" class="size-16" />
 				</div>
-				<p class="text-lg font-extrabold">SvelteKit</p>
-			</div>
-			<div class="space-y-2">
-				<div class="mx-auto flex items-center justify-center">
-					<img src="/supabase-logo-icon.svg" alt="Supabase" class="size-16" />
-				</div>
-				<p class="text-lg font-extrabold">Supabase</p>
-			</div>
-			<div class="space-y-2">
-				<div class="mx-auto flex items-center justify-center">
-					<img src="/ts-logo-512.svg" alt="TypeScript" class="size-16" />
-				</div>
-				<p class="text-lg font-extrabold">TypeScript</p>
+				<p class="text-lg font-bold">SvelteKit</p>
 			</div>
 			<div class="space-y-2">
 				<div class="mx-auto flex items-center justify-center">
 					<Skeleton alt="Skeleton UI" class="size-16 fill-black dark:fill-white" />
 				</div>
-				<p class="text-lg font-extrabold">Skeleton UI</p>
+				<p class="text-lg font-bold">Skeleton UI</p>
+			</div>
+			<div class="space-y-2">
+				<div class="mx-auto flex items-center justify-center">
+					<img src="/tailwind-logo-square.svg" alt="Tailwind CSS" class="size-16" />
+				</div>
+				<p class="text-lg font-bold">Tailwind CSS</p>
+			</div>
+			<div class="space-y-2">
+				<div class="mx-auto flex items-center justify-center">
+					<img src="/supabase-logo-icon.svg" alt="Supabase" class="size-16" />
+				</div>
+				<p class="text-lg font-bold">Supabase</p>
+			</div>
+			<div class="space-y-2">
+				<div class="rounded-base mx-auto flex size-16 items-center justify-center bg-black p-2">
+					<img src="/resend-icon-white.svg" alt="Resend" class="size-16" />
+				</div>
+				<p class="text-lg font-bold">Resend</p>
+			</div>
+			<div class="space-y-2">
+				<div class="mx-auto flex items-center justify-center">
+					<img src="/ts-logo-512.svg" alt="TypeScript" class="size-16" />
+				</div>
+				<p class="text-lg font-bold">TypeScript</p>
 			</div>
 		</div>
 	</section>
 
-    <div class="flex justify-center">
+	<div class="flex justify-center">
 		<hr class="hr border-surface-500 max-w-64" />
 	</div>
 
