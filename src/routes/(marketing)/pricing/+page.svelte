@@ -188,7 +188,7 @@
                 Enterprise teams with specific requirements can get in touch for custom pricing and features.
             </p>
         </div>
-        <a href="mailto:sales@example.com" class="btn btn-lg preset-filled-secondary-500 text-surface-50-950">
+        <a href="mailto:sales@example.com" class="btn btn-lg preset-filled-secondary-500">
             <Mail class="size-5" />
             <span>Contact Sales</span>
         </a>

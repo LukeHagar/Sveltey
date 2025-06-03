@@ -9,11 +9,6 @@
 
 	let { session } = $derived(data);
 
-	// Helper function to check if a path is active
-	function isActivePath(path: string): boolean {
-		return page.url.pathname === path;
-	}
-
 	// Helper function to get navigation link classes
 	function getNavClasses(path: string): string {
 		return `btn btn-sm flex items-center gap-2 ${page.url.pathname === path ? 'cursor-default disabled' : ''}`;
@@ -23,7 +18,7 @@
 <header
 	class="bg-surface-50-950-token border-surface-200-700-token sticky top-0 z-50 border-b backdrop-blur-2xl"
 >
-	<nav class="container mx-auto px-6 py-4">
+	<nav class="container mx-auto px-2 py-2 md:py-4 md:px-6">
 		<div class="flex items-center justify-between">
 			<!-- Left side - Brand and Main navigation -->
 			<div class="flex items-center gap-8">
@@ -95,7 +90,7 @@
 					</div>
 				{:else}
 					<!-- Authentication Buttons -->
-					<div class="hidden md:flex items-center gap-1 md:gap-3 ">
+					<div class="hidden items-center gap-1 md:flex md:gap-3">
 						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
 							<User class="size-4" aria-hidden="true" />
 							<span class="">Sign In / Register</span>
@@ -104,12 +99,12 @@
 				{/if}
 			</div>
 		</div>
-		<div class="block pt-4 md:hidden">
-			<nav class="flex flex-wrap items-center justify-center gap-4">
-				<a href="/" class={getNavClasses('/')} aria-label="Go to homepage"> 
-                <Home class="size-4" aria-hidden="true" />
-                    Home
-                </a>
+		<div class="block pt-2 md:hidden">
+			<nav class="flex flex-wrap items-center justify-center gap-1">
+				<a href="/" class={getNavClasses('/')} aria-label="Go to homepage">
+					<Home class="size-4" aria-hidden="true" />
+					Home
+				</a>
 				<a href="/pricing" class={getNavClasses('/pricing')} aria-label="View pricing plans">
 					<DollarSign class="size-4" aria-hidden="true" />
 					Pricing
@@ -131,7 +126,7 @@
 					{:else}
 						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
 							<User class="size-4" aria-hidden="true" />
-							Sign In / Register
+							Sign In / Up
 						</a>
 					{/if}
 				</div>

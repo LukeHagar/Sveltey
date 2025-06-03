@@ -38,7 +38,7 @@
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {#each featuredPosts as post}
-                        <a href="/blog/{post.slug}" class="card preset-outlined-primary-500 p-6 md:p-8 space-y-4 hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
+                        <a href="/blog/{post.slug}" class="card preset-outlined-primary-500 p-6 md:p-8 space-y-4 hover:scale-105 hover:shadow-2xl transition-all duration-300 group flex flex-col">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-1 text-sm opacity-75">
                                     <Calendar class="size-4" />
@@ -52,7 +52,7 @@
                                 </div>
                             </h3>
                             
-                            <p class="opacity-75">{post.excerpt}</p>
+                            <p class="opacity-75 grow">{post.excerpt}</p>
                             
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2">
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="flex flex-wrap gap-1">
                                     {#each post.tags.slice(0, 2) as tag}
-                                        <span class="badge preset-outlined-surface-200-800 text-xs flex items-center gap-1">
+                                        <span class="badge preset-outlined-surface-500 text-xs flex items-center gap-1">
                                             <Tag class="size-3" />
                                             {tag}
                                         </span>
@@ -105,7 +105,7 @@
                                 {#if post.tags.length > 0}
                                     <div class="flex flex-wrap gap-1">
                                         {#each post.tags.slice(0, 3) as tag}
-                                            <span class="badge preset-outlined-surface-200-800 text-xs flex items-center gap-1">
+                                            <span class="badge preset-outlined-surface-500 text-xs flex items-center gap-1">
                                                 <Tag class="size-3" />
                                                 {tag}
                                             </span>
@@ -119,7 +119,7 @@
             </section>
         {/if}
     {:else}
-        <div class="card preset-outlined-surface-200-800 p-8 md:p-12 text-center max-w-2xl mx-auto space-y-4">
+        <div class="card preset-outlined-surface-500 p-8 md:p-12 text-center max-w-2xl mx-auto space-y-4">
             <BookOpen class="size-16 mx-auto text-primary-500 opacity-50" />
             <h2 class="h3">No blog posts yet</h2>
             <p class="opacity-75">

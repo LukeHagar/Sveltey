@@ -60,7 +60,7 @@
         </div>
 
         <!-- Error Description -->
-        <div class="card preset-outlined-surface-200-800 p-8 space-y-4">
+        <div class="card preset-outlined-surface-500 p-8 space-y-4">
             <p class="text-lg opacity-75">{errorInfo.description}</p>
             {#if message}
                 <div class="card preset-outlined-error-500 p-4">
@@ -73,7 +73,7 @@
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
                 onclick={() => window.history.back()} 
-                class="btn preset-outlined-surface-200-800 flex items-center gap-2"
+                class="btn preset-outlined-surface-500 flex items-center gap-2"
                 aria-label="Go back to previous page"
                 title="Go back to previous page"
             >
@@ -83,7 +83,7 @@
             
             <button 
                 onclick={() => window.location.reload()} 
-                class="btn preset-outlined-surface-200-800 flex items-center gap-2"
+                class="btn preset-outlined-surface-500 flex items-center gap-2"
                 aria-label="Reload current page"
                 title="Reload current page"
             >
@@ -103,14 +103,14 @@
         </div>
 
         <!-- Help Section -->
-        <div class="text-sm opacity-50 space-y-2">
+        <div class="text-sm space-y-2">
             <p>Still having trouble? Here are some helpful links:</p>
             <div class="flex items-center justify-center gap-4">
-                <a href="/blog" class="hover:opacity-75 transition-opacity">Blog</a>
+                <a href="/blog" class="anchor">Blog</a>
                 <span>•</span>
-                <a href="/contact" class="hover:opacity-75 transition-opacity">Contact Support</a>
+                <a href="/contact" class="anchor">Contact Support</a>
                 <span>•</span>
-                <a href="/help" class="hover:opacity-75 transition-opacity">Help Center</a>
+                <a href="/help" class="anchor">Help Center</a>
             </div>
         </div>
     </div>

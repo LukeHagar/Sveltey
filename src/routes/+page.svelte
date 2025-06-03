@@ -57,11 +57,13 @@
 		</div>
 	</header>
 
-	<hr class="hr max-w-48" />
+    <div class="flex justify-center">
+		<hr class="hr border-surface-500 max-w-64" />
+	</div>
 
 	<!-- Stats Section -->
 	<section>
-		<div class="flex gap-20 text-center flex-wrap font-bold justify-between justify-center">
+		<div class="flex gap-20 text-center flex-wrap font-bold justify-center">
 			<div class="space-y-1">
 				<span class="text-7xl">99%</span>
 				<p class="text-primary-500">Faster Development</p>
@@ -81,7 +83,9 @@
 		</div>
 	</section>
 
-	<hr class="hr max-w-48" />
+    <div class="flex justify-center">
+		<hr class="hr border-surface-500 max-w-64" />
+	</div>
 
 	<!-- Features Section -->
 	<section class="flex flex-wrap gap-4">
@@ -111,7 +115,9 @@
 		</div>
 	</section>
 
-	<hr class="hr max-w-48" />
+    <div class="flex justify-center">
+		<hr class="hr border-surface-500 max-w-64" />
+	</div>
 
 	<!-- Technologies Section -->
 	<section class="space-y-8 text-center">
@@ -144,7 +150,9 @@
 		</div>
 	</section>
 
-	<hr class="hr max-w-48" />
+    <div class="flex justify-center">
+		<hr class="hr border-surface-500 max-w-64" />
+	</div>
 
 	<!-- Call to Action Section -->
 	<section class="grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_auto]">

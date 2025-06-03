@@ -25,6 +25,10 @@ A modern, production-ready SaaS template built with [SvelteKit 2](https://kit.sv
   - [🔧 Configuration](#-configuration)
     - [Environment Variables](#environment-variables)
     - [Supabase Setup](#supabase-setup)
+    - [Email Setup (Resend)](#email-setup-resend)
+      - [Email Features](#email-features)
+      - [Example Usage](#example-usage)
+      - [Email Template example](#email-template-example)
     - [Stripe Setup](#stripe-setup)
     - [Analytics Setup (Plausible)](#analytics-setup-plausible)
       - [Current Configuration](#current-configuration)
@@ -119,6 +123,7 @@ Visit `http://localhost:5173` and start building your SaaS!
 - **UI Components**: Skeleton UI
 - **Styling**: Tailwind CSS
 - **Analytics**: Plausible Analytics
+- **Email**: Resend
 <!-- - **Payments**: Stripe -->
 - **Deployment**: Vercel/Netlify ready
 - **Language**: TypeScript
@@ -159,6 +164,9 @@ Create a `.env` file in the root directory:
 PUBLIC_SUPABASE_URL=your_supabase_url
 PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
+# Resend (for email)
+RESEND_API_KEY=your_resend_api_key
+
 # Stripe // coming soon
 PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 STRIPE_SECRET_KEY=your_stripe_secret_key
@@ -172,6 +180,79 @@ STRIPE_WEBHOOK_SECRET=your_webhook_secret
 2. Copy the project URL and anon key
 3. Run the included SQL migrations
 4. Set up your authentication providers
+
+### Email Setup (Resend)
+
+Sveltey uses [Resend](https://resend.com/) for reliable email delivery with excellent developer experience.
+
+1. **Create a Resend account** at [resend.com](https://resend.com/)
+2. **Get your API key** from the Resend dashboard
+3. **Add to environment variables**:
+   ```env
+   RESEND_API_KEY=re_your_api_key_here
+   ```
+4. **Verify your domain** (optional but recommended for production):
+   - Add your domain in the Resend dashboard
+   - Configure DNS records as instructed
+   - This removes the "via resend.com" branding and improves deliverability
+
+#### Email Features
+
+- **Transactional Emails**: Password resets, welcome emails, notifications
+- **Template Support**: Beautiful HTML email templates
+- **Delivery Tracking**: Monitor email delivery and engagement
+- **High Deliverability**: Excellent inbox placement rates
+- **Simple API**: Easy integration with SvelteKit API routes
+
+#### Example Usage
+
+```typescript
+// src/routes/api/send-email/+server.ts
+import { RESEND_API_KEY } from '$env/static/private';
+import { Resend } from 'resend';
+
+const resend = new Resend(RESEND_API_KEY);
+
+export async function POST({ request }) {
+  const { to, subject, html } = await request.json();
+  
+  try {
+    const data = await resend.emails.send({
+      from: 'noreply@yourdomain.com',
+      to,
+      subject,
+      html
+    });
+    
+    return new Response(JSON.stringify({ success: true, data }), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+}
+```
+
+#### Email Template example
+
+Create reusable email templates in `src/lib/emails/`:
+
+```typescript
+// src/lib/emails/welcome.ts
+export const welcomeEmail = (userName: string) => `
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <h1 style="color: #333;">Welcome to Sveltey, ${userName}!</h1>
+    <p>Thank you for joining our platform. We're excited to have you on board.</p>
+    <a href="https://yourdomain.com/dashboard" 
+       style="background: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px;">
+      Get Started
+    </a>
+  </div>
+`;
+```
 
 ### Stripe Setup
 
