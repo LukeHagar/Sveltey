@@ -130,8 +130,9 @@
 
 	{#if showDropdown}
 		<div
-			class="card preset-outlined-primary-500 bg-surface-50-950 absolute right-0 sm:left-0 z-50 mt-2 w-24 sm:w-48 overflow-hidden rounded-lg shadow-lg"
+			class="card preset-outlined-primary-500 bg-surface-50-950 absolute right-0 md:left-0 z-50 mt-2 w-24 sm:w-48 h-128 overflow-hidden rounded-container shadow-lg"
 		>
+			<div class="flex flex-col gap-2 overflow-scroll h-full">
 			{#each colorThemes as theme}
 				<button
 					onclick={() => selectColorTheme(theme.value)}
@@ -144,6 +145,7 @@
 					{/if}
 				</button>
 			{/each}
+        </div>
 		</div>
 	{/if}
 </div>
