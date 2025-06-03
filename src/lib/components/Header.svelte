@@ -60,7 +60,7 @@
 			</div>
 
 			<!-- Right side - User actions and theme switcher -->
-			<div class="flex gap-3">
+			<div class="flex gap-1 sm:gap-3">
 				<ThemeSwitch />
 
 				{#if session}
@@ -91,10 +91,10 @@
 					</div>
 				{:else}
 					<!-- Authentication Buttons -->
-					<div class="flex items-center gap-3">
+					<div class="flex items-center gap-1 sm:gap-3">
 						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
                             <User class="size-4" aria-hidden="true" />
-                            <span>Sign In / Register</span>
+                            <span class="hidden sm:inline">Sign In / Register</span>
                         </a>
 					</div>
 				{/if}

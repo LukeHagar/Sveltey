@@ -7,7 +7,6 @@
 
 @source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
 
-
 /* Skeleton UI Themes */
 @import '@skeletonlabs/skeleton/themes/catppuccin';
 @import '@skeletonlabs/skeleton/themes/cerberus';
@@ -35,10 +34,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 div.prose a {
-    @apply anchor
+	@apply anchor;
 }
 
 a.disabled {
-    @apply pointer-events-none opacity-50;
-
+	@apply pointer-events-none opacity-50;
 }
+

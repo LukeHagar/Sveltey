@@ -67,7 +67,7 @@
 <Header {data} />
 
 <!-- Main Content -->
-<main class="min-h-screen">
+<main class="min-h-screen p-4">
 	{@render children()}
 	<!-- Pass session to child pages -->
 </main>

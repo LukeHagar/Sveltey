@@ -124,13 +124,13 @@
 		aria-expanded={showDropdown}
 	>
 		<Palette class="size-4" aria-hidden="true" />
-		<span class="capitalize">{currentColorTheme}</span>
+		<span class="capitalize hidden sm:block">{currentColorTheme}</span>
 		<ChevronDown class={`size-4 transition-transform ${showDropdown === true ? 'rotate-180' : ''}`} aria-hidden="true" />
 	</button>
 
 	{#if showDropdown}
 		<div
-			class="card preset-outlined-primary-500 bg-surface-50-950 absolute left-0 z-50 mt-2 w-48 overflow-hidden rounded-lg shadow-lg"
+			class="card preset-outlined-primary-500 bg-surface-50-950 absolute right-0 sm:left-0 z-50 mt-2 w-24 sm:w-48 overflow-hidden rounded-lg shadow-lg"
 		>
 			{#each colorThemes as theme}
 				<button
