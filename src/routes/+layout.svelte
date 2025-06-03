@@ -145,14 +145,14 @@
 			class="border-surface-300-600-token mt-8 flex flex-col items-center justify-between border-t pt-8 md:flex-row"
 		>
 			<p class="text-sm opacity-50">© 2025 Sveltey. All rights reserved.</p>
-			<div class="mt-4 flex items-center gap-4 md:mt-0">
+			<div class="mt-4 flex flex-wrap items-center justify-center gap-4 md:mt-0">
 				<span class="text-sm opacity-50">Built with</span>
 				<div class="flex items-center gap-2 text-sm opacity-75">
-					<span>SvelteKit</span>
+					<a class="anchor" href="https://kit.svelte.dev/" target="_blank">SvelteKit</a>
 					<span>•</span>
-					<span>Supabase</span>
+					<a class="anchor" href="https://supabase.com/" target="_blank">Supabase</a>
 					<span>•</span>
-					<span>Skeleton UI</span>
+					<a class="anchor" href="https://skeleton.dev/" target="_blank">Skeleton UI</a>
 				</div>
 			</div>
 		</div>

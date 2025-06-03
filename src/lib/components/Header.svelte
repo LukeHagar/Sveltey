@@ -36,14 +36,14 @@
 				<!-- Main Navigation -->
 				<div class="hidden items-center gap-2 md:flex">
 					<a href="/" class={getNavClasses('/')} aria-label="Go to homepage">
-                        <Home class="size-4" aria-hidden="true" />
-                        <span>Home</span>
-                    </a>
+						<Home class="size-4" aria-hidden="true" />
+						<span>Home</span>
+					</a>
 
 					<a href="/pricing" class={getNavClasses('/pricing')} aria-label="View pricing plans">
-                        <DollarSign class="size-4" aria-hidden="true" />
-                        <span>Pricing</span>
-                    </a>
+						<DollarSign class="size-4" aria-hidden="true" />
+						<span>Pricing</span>
+					</a>
 
 					<a href="/blog" class={getNavClasses('/blog')} aria-label="Read our blog">
 						<BookOpen class="size-4" aria-hidden="true" />
@@ -51,7 +51,11 @@
 					</a>
 
 					{#if session}
-						<a href="/app/dashboard" class={getNavClasses('/app/dashboard')} aria-label="Go to dashboard">
+						<a
+							href="/app/dashboard"
+							class={getNavClasses('/app/dashboard')}
+							aria-label="Go to dashboard"
+						>
 							<LayoutDashboard class="size-4" aria-hidden="true" />
 							<span>Dashboard</span>
 						</a>
@@ -60,7 +64,7 @@
 			</div>
 
 			<!-- Right side - User actions and theme switcher -->
-			<div class="flex gap-1 sm:gap-3">
+			<div class="flex gap-1 md:gap-3">
 				<ThemeSwitch />
 
 				{#if session}
@@ -91,14 +95,47 @@
 					</div>
 				{:else}
 					<!-- Authentication Buttons -->
-					<div class="flex items-center gap-1 sm:gap-3">
+					<div class="hidden md:flex items-center gap-1 md:gap-3 ">
 						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
-                            <User class="size-4" aria-hidden="true" />
-                            <span class="hidden sm:inline">Sign In / Register</span>
-                        </a>
+							<User class="size-4" aria-hidden="true" />
+							<span class="">Sign In / Register</span>
+						</a>
 					</div>
 				{/if}
 			</div>
+		</div>
+		<div class="block pt-4 md:hidden">
+			<nav class="flex flex-wrap items-center justify-center gap-4">
+				<a href="/" class={getNavClasses('/')} aria-label="Go to homepage"> 
+                <Home class="size-4" aria-hidden="true" />
+                    Home
+                </a>
+				<a href="/pricing" class={getNavClasses('/pricing')} aria-label="View pricing plans">
+					<DollarSign class="size-4" aria-hidden="true" />
+					Pricing
+				</a>
+				<a href="/blog" class={getNavClasses('/blog')} aria-label="Read our blog">
+					<BookOpen class="size-4" aria-hidden="true" />
+					Blog
+				</a>
+				<div class="flex justify-center gap-2">
+					{#if session}
+						<a
+							href="/app/dashboard"
+							class={getNavClasses('/app/dashboard')}
+							aria-label="Go to dashboard"
+						>
+							<LayoutDashboard class="size-4" aria-hidden="true" />
+							Dashboard
+						</a>
+					{:else}
+						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
+							<User class="size-4" aria-hidden="true" />
+							Sign In / Register
+						</a>
+					{/if}
+				</div>
+			</nav>
 		</div>
 	</nav>
 </header>
