@@ -90,7 +90,9 @@
 			</p>
 		</header>
 
-		<hr class="hr mx-auto max-w-48" />
+		<div class="flex justify-center">
+			<hr class="hr border-surface-500 max-w-64" />
+		</div>
 
 		<!-- Stats Overview -->
 		<section class="space-y-8">
@@ -98,7 +100,7 @@
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 				{#each dashboardStats as stat}
 					<div
-						class="card preset-outlined-surface-200-800 space-y-4 p-6 text-center transition-all duration-300 hover:scale-105"
+						class="card preset-outlined-surface-500 space-y-4 p-6 text-center transition-all duration-300 hover:scale-105"
 						role="article"
 						aria-label="{stat.label}: {stat.value}"
 					>
@@ -112,7 +114,9 @@
 			</div>
 		</section>
 
-		<hr class="hr mx-auto max-w-48" />
+		<div class="flex justify-center">
+			<hr class="hr border-surface-500 max-w-64" />
+		</div>
 
 		<!-- Quick Actions -->
 		<section class="space-y-8">
@@ -120,7 +124,7 @@
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each quickActions as action}
 					<div
-						class="card preset-outlined-surface-200-800 group space-y-4 p-6 transition-all duration-300 hover:scale-105 md:p-8"
+						class="card preset-outlined-surface-500 group space-y-4 p-6 transition-all duration-300 hover:scale-105 md:p-8"
 					>
 						<action.icon
 							class="text-primary-500 size-10 transition-transform group-hover:scale-110"
@@ -139,7 +143,7 @@
 							</a>
 						{:else}
 							<button 
-								class="btn preset-outlined-surface-200-800 w-full opacity-50" 
+								class="btn preset-outlined-surface-500 w-full opacity-50" 
 								disabled
 								aria-label="{action.action} - {action.title} (Coming Soon)"
 								title="This feature is coming soon"
@@ -152,7 +156,9 @@
 			</div>
 		</section>
 
-		<hr class="hr mx-auto max-w-48" />
+		<div class="flex justify-center">
+			<hr class="hr border-surface-500 max-w-64" />
+		</div>
 
 		<!-- Account Status & Upgrade -->
 		<section class="space-y-8">
@@ -175,7 +181,7 @@
 						<span>Upgrade Plan</span>
 					</a>
 					<button 
-						class="btn preset-outlined-surface-200-800" 
+						class="btn preset-outlined-surface-500" 
 						disabled
 						aria-label="View usage statistics (Coming Soon)"
 						title="Usage statistics feature is coming soon"
@@ -190,7 +196,7 @@
 		<!-- Recent Activity (Placeholder) -->
 		<section class="space-y-8">
 			<h2 class="h2 text-center">Recent Activity</h2>
-			<div class="card preset-outlined-surface-200-800 space-y-4 p-8 text-center">
+			<div class="card preset-outlined-surface-500 space-y-4 p-8 text-center">
 				<BarChart class="text-primary-500 mx-auto size-16 opacity-50" aria-hidden="true" />
 				<h3 class="h4">No recent activity</h3>
 				<p class="opacity-75">
@@ -207,7 +213,7 @@
 						Create Project (Coming Soon)
 					</button>
 					<button 
-						class="btn preset-outlined-surface-200-800" 
+						class="btn preset-outlined-surface-500" 
 						disabled
 						aria-label="View documentation (Coming Soon)"
 						title="Documentation feature is coming soon"
@@ -236,7 +242,7 @@
 				</a>
 				<a 
 					href="/auth/signup" 
-					class="btn preset-outlined-surface-200-800"
+					class="btn preset-outlined-surface-500"
 					aria-label="Create new account to get started"
 				>
 					<span>Create Account</span>
@@ -246,7 +252,7 @@
 	{:else}
 		<!-- Loading State -->
 		<div
-			class="card preset-outlined-surface-200-800 mx-auto max-w-2xl space-y-4 p-8 text-center md:p-12"
+			class="card preset-outlined-surface-500 mx-auto max-w-2xl space-y-4 p-8 text-center md:p-12"
 			role="status"
 			aria-live="polite"
 		>
