@@ -49,7 +49,7 @@
 	</div>
 
 	<!-- Quick Navigation -->
-	<nav class="card preset-outlined-surface-200-800 p-6 mb-12">
+	<nav class="card preset-outlined-surface-500 p-6 mb-12">
 		<h2 class="h4 mb-4 flex items-center gap-2">
 			<FileText class="size-5 text-primary-500" />
 			Quick Navigation
@@ -73,7 +73,7 @@
 				Acceptance of Terms
 			</h2>
 			
-			<div class="card preset-outlined-surface-200-800 p-6">
+			<div class="card preset-outlined-surface-500 p-6">
 				<p class="opacity-75 mb-4">
 					By accessing and using the Sveltey SaaS template service ("Service"), you accept and agree to be bound by the terms and provision of this agreement.
 				</p>
@@ -91,7 +91,7 @@
 			</h2>
 			
 			<div class="space-y-4">
-				<div class="card preset-outlined-surface-200-800 p-6">
+				<div class="card preset-outlined-surface-500 p-6">
 					<h3 class="h4 mb-3">What We Provide</h3>
 					<p class="opacity-75">
 						Sveltey is a comprehensive SaaS template built with SvelteKit, Supabase, and Skeleton UI. 
@@ -99,7 +99,7 @@
 					</p>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6">
+				<div class="card preset-outlined-surface-500 p-6">
 					<h3 class="h4 mb-3">Service Availability</h3>
 					<p class="opacity-75">
 						We strive to maintain high availability of our service, but we do not guarantee uninterrupted access. 
@@ -117,7 +117,7 @@
 			</h2>
 			
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				<div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+				<div class="card preset-outlined-surface-500 p-6 space-y-4">
 					<h3 class="h4">Account Creation</h3>
 					<ul class="space-y-2 text-sm opacity-75">
 						<li>• You must provide accurate information</li>
@@ -127,7 +127,7 @@
 					</ul>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+				<div class="card preset-outlined-surface-500 p-6 space-y-4">
 					<h3 class="h4">Account Responsibilities</h3>
 					<ul class="space-y-2 text-sm opacity-75">
 						<li>• Keep login credentials secure</li>
@@ -148,8 +148,8 @@
 			
 			<div class="space-y-4">
 				<div class="card preset-filled-success-500 p-6">
-					<h3 class="h4 mb-3">Permitted Uses</h3>
-					<ul class="space-y-2 text-sm opacity-90">
+					<h3 class="h4 mb-3 text-success-contrast-500 font-bold">Permitted Uses</h3>
+					<ul class="space-y-2 text-sm">
 						<li>• Building legitimate SaaS applications</li>
 						<li>• Learning and educational purposes</li>
 						<li>• Commercial use within license terms</li>
@@ -158,8 +158,8 @@
 				</div>
 				
 				<div class="card preset-filled-error-500 p-6">
-					<h3 class="h4 mb-3">Prohibited Uses</h3>
-					<ul class="space-y-2 text-sm opacity-90">
+					<h3 class="h4 mb-3 text-error-contrast-500 font-bold">Prohibited Uses</h3>
+					<ul class="space-y-2 text-sm">
 						<li>• Illegal or fraudulent activities</li>
 						<li>• Harassment or abuse of others</li>
 						<li>• Spam or unsolicited communications</li>
@@ -178,7 +178,7 @@
 			</h2>
 			
 			<div class="space-y-4">
-				<div class="card preset-outlined-surface-200-800 p-6">
+				<div class="card preset-outlined-surface-500 p-6">
 					<h3 class="h4 mb-3">Billing</h3>
 					<p class="opacity-75 mb-4">
 						Subscription fees are billed in advance on a monthly or annual basis. 
@@ -192,7 +192,7 @@
 					</ul>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6">
+				<div class="card preset-outlined-surface-500 p-6">
 					<h3 class="h4 mb-3">Refunds</h3>
 					<p class="opacity-75">
 						We offer a 30-day money-back guarantee for new subscriptions. 
@@ -210,7 +210,7 @@
 			</h2>
 			
 			<div class="space-y-4">
-				<div class="card preset-outlined-surface-200-800 p-6">
+				<div class="card preset-outlined-surface-500 p-6">
 					<h3 class="h4 mb-3">By You</h3>
 					<p class="opacity-75">
 						You may terminate your account at any time through your account settings. 
@@ -218,7 +218,7 @@
 					</p>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6">
+				<div class="card preset-outlined-surface-500 p-6">
 					<h3 class="h4 mb-3">By Us</h3>
 					<p class="opacity-75">
 						We may terminate or suspend your account for violation of these terms, 
@@ -233,7 +233,7 @@
 			<h2 class="h2 text-primary-500">Additional Terms</h2>
 			
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				<div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+				<div class="card preset-outlined-surface-500 p-6 space-y-4">
 					<h3 class="h4">Intellectual Property</h3>
 					<p class="text-sm opacity-75">
 						The Service and its original content remain our property. 
@@ -241,7 +241,7 @@
 					</p>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+				<div class="card preset-outlined-surface-500 p-6 space-y-4">
 					<h3 class="h4">Limitation of Liability</h3>
 					<p class="text-sm opacity-75">
 						Our liability is limited to the amount paid for the service. 
@@ -249,7 +249,7 @@
 					</p>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+				<div class="card preset-outlined-surface-500 p-6 space-y-4">
 					<h3 class="h4">Governing Law</h3>
 					<p class="text-sm opacity-75">
 						These terms are governed by the laws of [Your Jurisdiction]. 
@@ -257,7 +257,7 @@
 					</p>
 				</div>
 				
-				<div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+				<div class="card preset-outlined-surface-500 p-6 space-y-4">
 					<h3 class="h4">Changes to Terms</h3>
 					<p class="text-sm opacity-75">
 						We may update these terms with notice. 
@@ -284,7 +284,7 @@
 						<Mail class="size-4" />
 						Contact Support
 					</a>
-					<a href="mailto:legal@sveltey.dev" class="btn preset-outlined-surface-200-800">
+					<a href="mailto:legal@sveltey.dev" class="btn preset-outlined-surface-500">
 						legal@sveltey.dev
 					</a>
 				</div>

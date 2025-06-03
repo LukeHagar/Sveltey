@@ -34,7 +34,7 @@
     </div>
 
     <!-- Quick Navigation -->
-    <nav class="card preset-outlined-surface-200-800 p-6 mb-12">
+    <nav class="card preset-outlined-surface-500 p-6 mb-12">
         <h2 class="h4 mb-4 flex items-center gap-2">
             <FileText class="size-5 text-primary-500" />
             Quick Navigation
@@ -53,22 +53,22 @@
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         <div class="card preset-filled-success-500 p-6 text-center">
             <Lock class="size-8 mx-auto mb-3" />
-            <h3 class="h5 mb-2">Secure by Design</h3>
-            <p class="text-sm opacity-90">
+            <h3 class="h5 mb-2 text-success-contrast-500 font-extrabold">Secure by Design</h3>
+            <p class="text-sm text-success-contrast-500 opacity-90">
                 Your data is encrypted and protected with industry-standard security measures.
             </p>
         </div>
         <div class="card preset-filled-primary-500 p-6 text-center">
             <Eye class="size-8 mx-auto mb-3" />
-            <h3 class="h5 mb-2">Transparent</h3>
-            <p class="text-sm opacity-90">
+            <h3 class="h5 mb-2 text-primary-contrast-500 font-extrabold">Transparent</h3>
+            <p class="text-sm text-primary-contrast-500 opacity-90">
                 We're clear about what data we collect and how we use it.
             </p>
         </div>
         <div class="card preset-filled-secondary-500 p-6 text-center">
             <Users class="size-8 mx-auto mb-3" />
-            <h3 class="h5 mb-2">Your Control</h3>
-            <p class="text-sm opacity-90">
+            <h3 class="h5 mb-2 text-secondary-contrast-500 font-extrabold">Your Control</h3>
+            <p class="text-sm text-secondary-contrast-500 opacity-90">
                 You have full control over your data and can request deletion at any time.
             </p>
         </div>
@@ -84,7 +84,7 @@
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                <div class="card preset-outlined-surface-500 p-6 space-y-4">
                     <h3 class="h4">Account Information</h3>
                     <ul class="space-y-2 text-sm opacity-75">
                         <li>• Email address</li>
@@ -94,7 +94,7 @@
                     </ul>
                 </div>
                 
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                <div class="card preset-outlined-surface-500 p-6 space-y-4">
                     <h3 class="h4">Usage Information</h3>
                     <ul class="space-y-2 text-sm opacity-75">
                         <li>• Application usage patterns</li>
@@ -114,7 +114,7 @@
             </h2>
             
             <div class="space-y-4">
-                <div class="card preset-outlined-surface-200-800 p-6">
+                <div class="card preset-outlined-surface-500 p-6">
                     <h3 class="h4 mb-3">Service Provision</h3>
                     <p class="opacity-75">
                         We use your information to provide, maintain, and improve our services, 
@@ -122,7 +122,7 @@
                     </p>
                 </div>
                 
-                <div class="card preset-outlined-surface-200-800 p-6">
+                <div class="card preset-outlined-surface-500 p-6">
                     <h3 class="h4 mb-3">Communication</h3>
                     <p class="opacity-75">
                         We may use your contact information to send important service updates, 
@@ -130,7 +130,7 @@
                     </p>
                 </div>
                 
-                <div class="card preset-outlined-surface-200-800 p-6">
+                <div class="card preset-outlined-surface-500 p-6">
                     <h3 class="h4 mb-3">Analytics and Improvement</h3>
                     <p class="opacity-75">
                         We analyze usage patterns to understand how our service is used and 
@@ -147,7 +147,7 @@
                 Information Sharing
             </h2>
             
-            <div class="card preset-outlined-surface-200-800 p-6">
+            <div class="card preset-outlined-surface-500 p-6">
                 <p class="opacity-75 mb-4">
                     We do not sell, trade, or otherwise transfer your personal information to third parties, 
                     except in the following circumstances:
@@ -169,7 +169,7 @@
             </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                <div class="card preset-outlined-surface-500 p-6 space-y-4">
                     <h3 class="h4">Technical Safeguards</h3>
                     <ul class="space-y-2 text-sm opacity-75">
                         <li>• End-to-end encryption</li>
@@ -179,7 +179,7 @@
                     </ul>
                 </div>
                 
-                <div class="card preset-outlined-surface-200-800 p-6 space-y-4">
+                <div class="card preset-outlined-surface-500 p-6 space-y-4">
                     <h3 class="h4">Operational Security</h3>
                     <ul class="space-y-2 text-sm opacity-75">
                         <li>• Employee training and background checks</li>
@@ -199,7 +199,7 @@
             </h2>
             
             <div class="space-y-4">
-                <div class="card preset-outlined-surface-200-800 p-6">
+                <div class="card preset-outlined-surface-500 p-6">
                     <h3 class="h4 mb-3">Access and Portability</h3>
                     <p class="opacity-75">
                         You have the right to access your personal data and request a copy of your information 
@@ -207,7 +207,7 @@
                     </p>
                 </div>
                 
-                <div class="card preset-outlined-surface-200-800 p-6">
+                <div class="card preset-outlined-surface-500 p-6">
                     <h3 class="h4 mb-3">Correction and Updates</h3>
                     <p class="opacity-75">
                         You can update your account information at any time through your account settings 
@@ -215,7 +215,7 @@
                     </p>
                 </div>
                 
-                <div class="card preset-outlined-surface-200-800 p-6">
+                <div class="card preset-outlined-surface-500 p-6">
                     <h3 class="h4 mb-3">Deletion</h3>
                     <p class="opacity-75">
                         You have the right to request deletion of your personal data. We will honor such requests 
@@ -242,7 +242,7 @@
                         <Mail class="size-4" />
                         Contact Support
                     </a>
-                    <a href="mailto:privacy@sveltey.dev" class="btn preset-outlined-surface-200-800">
+                    <a href="mailto:privacy@sveltey.dev" class="btn preset-outlined-surface-500">
                         privacy@sveltey.dev
                     </a>
                 </div>
