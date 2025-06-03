@@ -29,8 +29,8 @@
 			<div class="flex items-center gap-8">
 				<!-- Brand -->
 				<a href="/" class="flex items-center gap-2" aria-label="Sveltey - Go to homepage">
-					<SvelteyLogoLetter size="size-12" />
-					<span class="hidden text-xl font-bold sm:block">Sveltey</span>
+					<SvelteyLogoLetter size="size-8" />
+					<span class="hidden font-bold sm:block">Sveltey</span>
 				</a>
 
 				<!-- Main Navigation -->

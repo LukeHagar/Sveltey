@@ -2,6 +2,8 @@
     // Icons
     import { Rocket, Database, Zap, Star, Users, GitBranch } from '@lucide/svelte';
 
+    import Skeleton from '$lib/assets/skeleton.svelte'
+
     let { data } = $props();
 </script>
 
@@ -131,7 +133,7 @@
             </div>
             <div class="space-y-2">
                 <div class="mx-auto flex items-center justify-center">
-                    <img src="/skeleton.svg" alt="Skeleton UI" class="size-16">
+                    <Skeleton alt="Skeleton UI" class="size-16 fill-black dark:fill-white" />
                 </div>
                 <p class="text-lg font-extrabold">Skeleton UI</p>
             </div>
