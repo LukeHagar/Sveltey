@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { Check, ChevronDown, Moon, Palette, Sun } from '@lucide/svelte';
+	import { clickoutside } from '@svelte-put/clickoutside';
 
 	// Available color themes
 	const colorThemes = [
@@ -115,7 +116,8 @@
 </button>
 
 <!-- Color Theme Selector -->
-<div class="relative">
+<div class="relative my-auto" use:clickoutside
+onclickoutside={() => (showDropdown = false)}>
 	<button
 		onclick={() => (showDropdown = !showDropdown)}
 		class="btn btn-sm flex h-8 items-center"
@@ -124,28 +126,31 @@
 		aria-expanded={showDropdown}
 	>
 		<Palette class="size-4" aria-hidden="true" />
-		<span class="capitalize hidden sm:block">{currentColorTheme}</span>
-		<ChevronDown class={`size-4 transition-transform ${showDropdown === true ? 'rotate-180' : ''}`} aria-hidden="true" />
+		<span class="hidden capitalize sm:block">{currentColorTheme}</span>
+		<ChevronDown
+			class={`size-4 transition-transform ${showDropdown === true ? 'rotate-180' : ''}`}
+			aria-hidden="true"
+		/>
 	</button>
 
 	{#if showDropdown}
 		<div
-			class="card preset-outlined-primary-500 bg-surface-50-950 absolute right-0 md:left-0 z-50 mt-2 w-24 sm:w-48 h-128 overflow-hidden rounded-container shadow-lg"
+			class="card preset-outlined-primary-500 bg-surface-50-950 rounded-container absolute right-0 z-50 mt-2 h-128 w-24 overflow-hidden shadow-lg sm:w-48 md:left-0"
 		>
-			<div class="flex flex-col gap-2 overflow-scroll h-full">
-			{#each colorThemes as theme}
-				<button
-					onclick={() => selectColorTheme(theme.value)}
-					class="btn btn-sm flex w-full items-center justify-between px-4 py-2 transition-colors"
-					aria-label="Select {theme.label} theme"
-				>
-					<span>{theme.label}</span>
-					{#if currentColorTheme === theme.value}
-						<Check class="size-4" aria-hidden="true" />
-					{/if}
-				</button>
-			{/each}
-        </div>
+			<div class="flex h-full flex-col gap-2 overflow-y-scroll">
+				{#each colorThemes as theme}
+					<button
+						onclick={() => selectColorTheme(theme.value)}
+						class="btn btn-sm flex w-full items-center justify-between px-4 py-2 transition-colors"
+						aria-label="Select {theme.label} theme"
+					>
+						<span>{theme.label}</span>
+						{#if currentColorTheme === theme.value}
+							<Check class="size-4" aria-hidden="true" />
+						{/if}
+					</button>
+				{/each}
+			</div>
 		</div>
 	{/if}
 </div>
