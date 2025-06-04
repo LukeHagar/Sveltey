@@ -1,10 +1,10 @@
 // src/routes/blog/[slug]/+page.server.ts
-import { getPostBySlug } from '$lib/server/blog';
+import { getPostBySlug } from '$lib/blog';
 import { error } from '@sveltejs/kit';
 import type { MetaTagsProps } from 'svelte-meta-tags';
 
 export const load = async ({ params, url }) => {
-	// Get only the metadata for the post
+	// Get the full post with content
 	const post = await getPostBySlug(params.slug);
 	
 	if (!post) {

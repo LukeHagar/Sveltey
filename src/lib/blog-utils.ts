@@ -1,4 +1,4 @@
-import type { BlogPost } from './blog';
+import type { BlogPost, BlogPostMetadata } from './blog';
 
 /**
  * Utility functions for blog content management
@@ -86,7 +86,7 @@ Wrap up your blog post with a compelling conclusion.
 };
 
 // Validate blog post metadata
-export const validatePostMetadata = (metadata: Partial<BlogPost>): string[] => {
+export const validatePostMetadata = (metadata: Partial<BlogPost | BlogPostMetadata>): string[] => {
 	const errors: string[] = [];
 	
 	if (!metadata.title?.trim()) {
@@ -121,8 +121,8 @@ export const validatePostMetadata = (metadata: Partial<BlogPost>): string[] => {
 	return errors;
 };
 
-// Search posts by keyword
-export const searchPosts = (posts: BlogPost[], keyword: string): BlogPost[] => {
+// Search posts by keyword (works with both BlogPost and BlogPostMetadata)
+export const searchPosts = <T extends BlogPost | BlogPostMetadata>(posts: T[], keyword: string): T[] => {
 	const searchTerm = keyword.toLowerCase();
 	
 	return posts.filter(post => 
@@ -133,8 +133,8 @@ export const searchPosts = (posts: BlogPost[], keyword: string): BlogPost[] => {
 	);
 };
 
-// Group posts by year
-export const groupPostsByYear = (posts: BlogPost[]): Record<string, BlogPost[]> => {
+// Group posts by year (works with both BlogPost and BlogPostMetadata)
+export const groupPostsByYear = <T extends BlogPost | BlogPostMetadata>(posts: T[]): Record<string, T[]> => {
 	return posts.reduce((groups, post) => {
 		const year = new Date(post.publishedAt).getFullYear().toString();
 		if (!groups[year]) {
@@ -142,11 +142,15 @@ export const groupPostsByYear = (posts: BlogPost[]): Record<string, BlogPost[]> 
 		}
 		groups[year].push(post);
 		return groups;
-	}, {} as Record<string, BlogPost[]>);
+	}, {} as Record<string, T[]>);
 };
 
-// Get related posts based on tags
-export const getRelatedPosts = (currentPost: BlogPost, allPosts: BlogPost[], limit: number = 3): BlogPost[] => {
+// Get related posts based on tags (works with metadata only for performance)
+export const getRelatedPosts = (
+	currentPost: BlogPost | BlogPostMetadata, 
+	allPosts: BlogPostMetadata[], 
+	limit: number = 3
+): BlogPostMetadata[] => {
 	const related = allPosts
 		.filter(post => post.slug !== currentPost.slug)
 		.map(post => {

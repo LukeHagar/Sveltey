@@ -40,4 +40,3 @@ div.prose a {
 a.disabled {
 	@apply pointer-events-none opacity-50;
 }
-

@@ -1,13 +1,9 @@
 <script lang="ts">
     // Icons
     import { Check, X, Star, Zap, Crown, Mail } from '@lucide/svelte';
-    
-    interface Props {
-        // Assuming session might be useful here, though not directly used in this basic structure
-        data: any;
-    }
+	import type { PageProps } from './$types';
 
-    let { data }: Props = $props();
+    let { data }: PageProps = $props();
 
     const plans = [
         {

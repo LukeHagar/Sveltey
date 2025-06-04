@@ -1,27 +1,20 @@
 <script lang="ts">
-    import { supabase } from '$lib/supabaseClient';
+    import { supabase } from '$lib/supabase-client.js';
     import { toaster } from '$lib';
-    import { Mail, Lock, LogIn, UserPlus, Github, Chrome, MessageCircle, Twitter, Star, Eye, EyeOff, AlertTriangle } from '@lucide/svelte';
+    import { Mail, Lock, LogIn, Github, Chrome, MessageCircle, Twitter, Eye, EyeOff, AlertTriangle } from '@lucide/svelte';
     import { onMount } from 'svelte';
 
     let { data } = $props();
 
     const session = $derived(data.session);
 
-    let activeTab = $state('login'); // 'login' or 'signup'
     let showPassword = $state(false);
     let authError = $state('');
 
     onMount(() => {
-        // Check URL parameters to set initial tab and handle errors
+        // Check URL parameters to handle errors
         const urlParams = new URLSearchParams(window.location.search);
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
-        
-        // Check for mode parameter
-        const mode = urlParams.get('mode');
-        if (mode === 'signup') {
-            activeTab = 'signup';
-        }
 
         // Check for Supabase auth errors in URL params or hash
         const error = urlParams.get('error') || hashParams.get('error');
@@ -133,60 +126,6 @@
             description: 'Email/password authentication is disabled in this demo. Please use GitHub login instead.'
         });
         return;
-        
-        // Original code commented out for demo
-        /*
-        loading = true;
-        message = '';
-        
-        try {
-            if (activeTab === 'login') {
-                const { error } = await supabase.auth.signInWithPassword({ 
-                    email: formData.email, 
-                    password: formData.password 
-                });
-                if (error) throw error;
-                
-                toaster.create({
-                    type: 'info',
-                    title: 'Welcome back!',
-                    description: 'You have been logged in successfully.'
-                });
-            } else {
-                const { data, error } = await supabase.auth.signUp({ 
-                    email: formData.email, 
-                    password: formData.password 
-                });
-                if (error) throw error;
-                
-                if (data.session) {
-                    toaster.create({
-                        type: 'info',
-                        title: 'Welcome aboard!',
-                        description: 'Your account has been created and you are now logged in.'
-                    });
-                } else if (data.user && !data.session) {
-                    toaster.create({
-                        type: 'info',
-                        title: 'Account created successfully!',
-                        description: 'Please check your email to confirm your account.'
-                    });
-                    return; // Don't redirect if email confirmation is needed
-                }
-            }
-            
-            goto('/dashboard');
-        } catch (error: any) {
-            toaster.create({
-                type: 'error',
-                title: activeTab === 'login' ? 'Login failed' : 'Signup failed',
-                description: error.message
-            });
-            message = error.message;
-        } finally {
-            loading = false;
-        }
-        */
     }
 
     async function handleOAuth(provider: string) {
@@ -209,7 +148,7 @@
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: provider as any,
                 options: {
-                    redirectTo: `${window.location.origin}/auth`
+                    redirectTo: `${window.location.origin}/auth/login`
                 }
             });
             if (error) throw error;
@@ -225,21 +164,15 @@
         }
     }
 
-    function switchTab(tab: string) {
-        activeTab = tab;
-        message = '';
-        authError = '';
-        formData = { email: '', password: '' };
-    }
-
     function dismissAuthError() {
         authError = '';
     }
-
-    $effect(() => {
-        console.log(session);
-    });
 </script>
+
+<svelte:head>
+    <title>Sign In - Sveltey</title>
+    <meta name="description" content="Sign in to your account to access your dashboard and manage your projects." />
+</svelte:head>
 
 <div class="container mx-auto py-20">
     <div class="max-w-md mx-auto space-y-8">
@@ -280,48 +213,15 @@
         <!-- Header -->
         <header class="text-center space-y-4">
             <div class="flex items-center justify-center gap-2 mb-4">
-                {#if activeTab === 'login'}
-                    <LogIn class="size-8 text-primary-500" />
-                    <h1 class="h1">Welcome <span class="text-primary-500">Back</span></h1>
-                {:else}
-                    <Star class="size-8 text-primary-500" />
-                    <h1 class="h1">Get <span class="text-primary-500">Started</span></h1>
-                {/if}
+                <LogIn class="size-8 text-primary-500" />
+                <h1 class="h1">Welcome <span class="text-primary-500">Back</span></h1>
             </div>
             <p class="text-lg opacity-75">
-                {#if activeTab === 'login'}
-                    Sign in to your account to access your dashboard and manage your projects.
-                {:else}
-                    Create your account to start building with our comprehensive SaaS template.
-                {/if}
+                Sign in to your account to access your dashboard and manage your projects.
             </p>
         </header>
 
-        <!-- Tab Switcher -->
-        <div class="card preset-outlined-primary-500 p-2">
-            <div class="flex gap-1">
-                <button
-                    type="button"
-                    class="btn flex-1 {activeTab === 'login' ? 'preset-filled-primary-500' : 'preset-ghost-primary-500'}"
-                    onclick={() => switchTab('login')}
-                    disabled={loading || oauthLoading !== ''}
-                >
-                    <LogIn class="size-4" />
-                    Sign In
-                </button>
-                <button
-                    type="button"
-                    class="btn flex-1 {activeTab === 'signup' ? 'preset-filled-primary-500' : 'preset-ghost-primary-500'}"
-                    onclick={() => switchTab('signup')}
-                    disabled={loading || oauthLoading !== ''}
-                >
-                    <UserPlus class="size-4" />
-                    Sign Up
-                </button>
-            </div>
-        </div>
-
-        <!-- Auth Form Card -->
+        <!-- Login Form Card -->
         <div class="card preset-outlined-primary-500 p-8 space-y-6">
             <!-- Error Message -->
             {#if message}
@@ -360,10 +260,9 @@
                                 type={showPassword ? 'text' : 'password'}
                                 id="password" 
                                 bind:value={formData.password} 
-                                placeholder={activeTab === 'login' ? 'Enter your password (disabled)' : 'Create a strong password (disabled)'}
+                                placeholder="Enter your password (disabled)"
                                 disabled={true}
-                                minlength={activeTab === 'signup' ? 6 : undefined}
-                                autocomplete={activeTab === 'login' ? 'current-password' : 'new-password'}
+                                autocomplete="current-password"
                             />
                             <button
                                 type="button"
@@ -379,9 +278,6 @@
                                 {/if}
                             </button>
                         </div>
-                        {#if activeTab === 'signup'}
-                            <p class="text-xs opacity-50">Must be at least 6 characters long</p>
-                        {/if}
                     </div>
                 </div>
 
@@ -390,34 +286,10 @@
                     class="btn preset-outlined-surface-200-800 w-full flex items-center justify-center gap-2 opacity-50 cursor-not-allowed" 
                     disabled={true}
                 >
-                    {#if activeTab === 'login'}
-                        <LogIn class="size-4" />
-                        Sign In (Demo Disabled)
-                    {:else}
-                        <UserPlus class="size-4" />
-                        Create Account (Demo Disabled)
-                    {/if}
+                    <LogIn class="size-4" />
+                    Sign In (Demo Disabled)
                 </button>
             </form>
-
-            <!-- Terms Notice for Signup -->
-            {#if activeTab === 'signup'}
-                <p class="text-xs opacity-50 text-center">
-                    By creating an account, you agree to our 
-                    <a href="/terms" class="text-primary-500 hover:text-primary-600 transition-colors">Terms of Service</a> 
-                    and 
-                    <a href="/privacy" class="text-primary-500 hover:text-primary-600 transition-colors">Privacy Policy</a>.
-                </p>
-            {/if}
-
-            <!-- Forgot Password for Login -->
-            {#if activeTab === 'login'}
-                <div class="text-center">
-                    <span class="text-sm text-surface-500 opacity-50">
-                        Forgot your password? (Demo disabled)
-                    </span>
-                </div>
-            {/if}
 
             <!-- Divider -->
             <div class="flex items-center">
@@ -451,29 +323,15 @@
 
         <!-- Footer Links -->
         <div class="text-center space-y-4">
-            {#if activeTab === 'login'}
-                <p class="text-sm opacity-75">
-                    Don't have an account? 
-                    <button 
-                        type="button"
-                        class="text-primary-500 hover:text-primary-600 transition-colors font-medium"
-                        onclick={() => switchTab('signup')}
-                    >
-                        Create one here
-                    </button>
-                </p>
-            {:else}
-                <p class="text-sm opacity-75">
-                    Already have an account? 
-                    <button 
-                        type="button"
-                        class="text-primary-500 hover:text-primary-600 transition-colors font-medium"
-                        onclick={() => switchTab('login')}
-                    >
-                        Sign in here
-                    </button>
-                </p>
-            {/if}
+            <p class="text-sm opacity-75">
+                Don't have an account? 
+                <a 
+                    href="/auth/register"
+                    class="text-primary-500 hover:text-primary-600 transition-colors font-medium"
+                >
+                    Create one here
+                </a>
+            </p>
             <div class="flex items-center justify-center gap-4 text-sm opacity-50">
                 <a href="/privacy" class="hover:opacity-75 transition-opacity">Privacy Policy</a>
                 <span>•</span>

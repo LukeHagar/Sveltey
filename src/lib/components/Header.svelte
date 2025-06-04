@@ -2,7 +2,15 @@
 	import { page } from '$app/state';
 	import SvelteyLogoLetter from '$lib/assets/Sveltey-logo-letter.svelte';
 	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
-	import { BookOpen, DollarSign, Home, LayoutDashboard, LogOut, User } from '@lucide/svelte';
+	import {
+		BookOpen,
+		DollarSign,
+		FormInputIcon,
+		Home,
+		LayoutDashboard,
+		LogOut,
+		User
+	} from '@lucide/svelte';
 	import { Avatar } from '@skeletonlabs/skeleton-svelte';
 
 	let { data } = $props();
@@ -18,7 +26,7 @@
 <header
 	class="bg-surface-50-950-token border-surface-200-700-token sticky top-0 z-50 border-b backdrop-blur-2xl"
 >
-	<nav class="container mx-auto px-2 py-2 md:py-4 md:px-6">
+	<nav class="container mx-auto px-2 py-2 md:px-6 md:py-4">
 		<div class="flex items-center justify-between">
 			<!-- Left side - Brand and Main navigation -->
 			<div class="flex items-center gap-8">
@@ -91,9 +99,13 @@
 				{:else}
 					<!-- Authentication Buttons -->
 					<div class="hidden items-center gap-1 md:flex md:gap-3">
-						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
+						<a href="/auth/login" class={getNavClasses('/auth/login')} aria-label="Login">
 							<User class="size-4" aria-hidden="true" />
-							<span class="">Sign In / Register</span>
+							<span class="">Login</span>
+						</a>
+						<a href="/auth/register" class={getNavClasses('/auth/register')} aria-label="Register">
+							<FormInputIcon class="size-4" aria-hidden="true" />
+							<span class="">Register</span>
 						</a>
 					</div>
 				{/if}
@@ -124,9 +136,13 @@
 							Dashboard
 						</a>
 					{:else}
-						<a href="/auth" class={getNavClasses('/auth')} aria-label="Sign in or register">
+						<a href="/auth/login" class={getNavClasses('/auth/login')} aria-label="Login">
 							<User class="size-4" aria-hidden="true" />
-							Sign In / Up
+							<span class="">Login</span>
+						</a>
+						<a href="/auth/register" class={getNavClasses('/auth/register')} aria-label="Register">
+							<FormInputIcon class="size-4" aria-hidden="true" />
+							<span class="">Register</span>
 						</a>
 					{/if}
 				</div>

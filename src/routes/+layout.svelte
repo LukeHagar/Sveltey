@@ -68,7 +68,7 @@
 <Header {data} />
 
 <!-- Main Content -->
-<main class="min-h-screen p-4">
+<main class="min-h-screen px-4">
 	{@render children()}
 </main>
 

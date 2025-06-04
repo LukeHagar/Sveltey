@@ -12,6 +12,7 @@
             day: 'numeric'
         });
     };
+
 </script>
 
 <div class="container mx-auto py-20 space-y-12 max-w-4xl">
@@ -108,7 +109,7 @@
     <!-- Article Content -->
     <article class="prose dark:prose-invert prose-lg max-w-none">
         <div class="prose dark:prose-invert prose-lg max-w-none prose-headings:text-primary-500 prose-links:text-primary-500 prose-code:text-primary-500">
-            {@html post.content.html}
+            <post.content />
         </div>
     </article>
 
