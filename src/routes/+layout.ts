@@ -73,7 +73,7 @@ export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
       title: 'Sveltey - SvelteKit SaaS Template',
       description: 'A comprehensive, production-ready SaaS template built with Svelte 5, SvelteKit 2, Supabase, and Skeleton UI.',
       // OG Images can be easily created with https://ogimagemaker.com
-      image: `${url.origin}/og-image.png`,
+      image: `${url.origin}/og_image.png`,
       imageAlt: 'Sveltey - SvelteKit SaaS Template'
     },
     
