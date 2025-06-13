@@ -72,7 +72,8 @@ export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
       creator: '@sveltey_dev',
       title: 'Sveltey - SvelteKit SaaS Template',
       description: 'A comprehensive, production-ready SaaS template built with Svelte 5, SvelteKit 2, Supabase, and Skeleton UI.',
-      image: `${url.origin}/og-image.jpg`,
+      // OG Images can be easily created with https://ogimagemaker.com
+      image: `${url.origin}/og-image.png`,
       imageAlt: 'Sveltey - SvelteKit SaaS Template'
     },
     
@@ -88,34 +89,13 @@ export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
       {
         name: 'application-name',
         content: 'Sveltey'
-      },
-      {
-        name: 'apple-mobile-web-app-capable',
-        content: 'yes'
-      },
-      {
-        name: 'apple-mobile-web-app-status-bar-style',
-        content: 'default'
-      },
-      {
-        name: 'apple-mobile-web-app-title',
-        content: 'Sveltey'
       }
     ],
     
     additionalLinkTags: [
       {
         rel: 'icon',
-        href: '/favicon.ico'
-      },
-      {
-        rel: 'apple-touch-icon',
-        href: '/apple-touch-icon.png',
-        sizes: '180x180'
-      },
-      {
-        rel: 'manifest',
-        href: '/manifest.json'
+        href: '/favicon.svg'
       }
     ]
   }) satisfies MetaTagsProps

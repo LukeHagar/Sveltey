@@ -125,7 +125,7 @@
 		<div class="grid grid-cols-2 items-center gap-8 md:grid-cols-4">
 			<div class="space-y-2">
 				<div class="mx-auto flex items-center justify-center">
-					<img src="/svelte-logo-square.svg" alt="SvelteKit" class="size-16" />
+					<img src="/logos/svelte-logo-square.svg" alt="SvelteKit" class="size-16" />
 				</div>
 				<p class="text-lg font-bold">SvelteKit</p>
 			</div>
@@ -137,25 +137,25 @@
 			</div>
 			<div class="space-y-2">
 				<div class="mx-auto flex items-center justify-center">
-					<img src="/tailwind-logo-square.svg" alt="Tailwind CSS" class="size-16" />
+					<img src="/logos/tailwind-logo-square.svg" alt="Tailwind CSS" class="size-16" />
 				</div>
 				<p class="text-lg font-bold">Tailwind CSS</p>
 			</div>
 			<div class="space-y-2">
 				<div class="mx-auto flex items-center justify-center">
-					<img src="/supabase-logo-icon.svg" alt="Supabase" class="size-16" />
+					<img src="/logos/supabase-logo-icon.svg" alt="Supabase" class="size-16" />
 				</div>
 				<p class="text-lg font-bold">Supabase</p>
 			</div>
 			<div class="space-y-2">
 				<div class="rounded-base mx-auto flex size-16 items-center justify-center bg-black p-2">
-					<img src="/resend-icon-white.svg" alt="Resend" class="size-16" />
+					<img src="/logos/resend-icon-white.svg" alt="Resend" class="size-16" />
 				</div>
 				<p class="text-lg font-bold">Resend</p>
 			</div>
 			<div class="space-y-2">
 				<div class="mx-auto flex items-center justify-center">
-					<img src="/ts-logo-512.svg" alt="TypeScript" class="size-16" />
+					<img src="/logos/ts-logo-512.svg" alt="TypeScript" class="size-16" />
 				</div>
 				<p class="text-lg font-bold">TypeScript</p>
 			</div>
