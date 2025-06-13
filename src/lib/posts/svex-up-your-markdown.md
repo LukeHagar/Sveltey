@@ -20,6 +20,11 @@ tags: ["mdsvex", "ftw", "rofl"]
 
 # { title }
 
+This is an example of a post written in markdown.
+and loaded via MDSvex.
+
+[MDSvex](https://mdsvex.pngwn.io) is a Svelte project that allows you to write markdown files and have them compiled into Svelte components.
+
 ## Good stuff in your markdown
 
 Markdown is pretty good but sometimes you just need more.
