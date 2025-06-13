@@ -1,0 +1,60 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Svelte Documentation and Performance Guidelines
+
+## Documentation Requirements
+All code changes and implementations in this project must reference and follow the latest documentation for:
+- Svelte 5: https://svelte.dev/docs
+- SvelteKit 2: https://kit.svelte.dev/docs
+
+## Performance Guidelines
+
+### 1. Performance and security
+- Utilize `preloadData` and `preloadCode` for critical routes
+- Ensure that protected routes are always properly protected in the [hooks.server.ts](mdc:src/hooks.server.ts) file
+- Ensure that costly or long running async tasks are always properly handled and are never blocking
+- Use good loading best practices while data is being fetched
+- Use SvelteKits native load and server load functions when appropriate for page data 
+- Separate out data from load functions that is not absolutely required for initial page load, and favor techniques that allow for sensible data caching
+
+### 2. Server-Side Rendering (SSR) Optimization
+- Use `+page.server.ts` for data loading when appropriate to leverage SSR
+- Implement proper caching strategies using `cache-control` headers
+- Utilize `load` functions with `ssr: true` for SEO-critical pages with mostly static data like marketing pages
+- Consider using `ssr: false` for client-only features or larger complex pages, or pages with lots of initial load data, to avoid excessive server load
+
+### 3. Asset Optimization
+- Implement proper image optimization using `srcset` and `sizes`
+- Utilize modern image formats (WebP, AVIF) with fallbacks
+- Implement lazy loading for images below the fold
+- Use `@sveltejs/enhanced-img` where it makes sense for local site image assets
+
+### 4. State Management
+- Use Svelte's built-in stores for global state
+- Implement proper store subscriptions and cleanup
+- Avoid unnecessary store updates
+- Use derived stores for computed values
+
+### 5. Routing and Navigation
+- Implement proper `preload` functions for critical routes
+- Use `data-sveltekit-preload-data` for important links
+- Implement proper error boundaries and loading states
+- Use shallow routing when appropriate
+
+### 6. Build and Deployment
+- Use the latest SvelteKit 2 features and optimizations
+- Utilize Vite's build optimizations
+- Enable compression and proper caching headers
+
+### 7. Best Practices
+- Keep components small and focused
+- Implement proper error handling
+- Use TypeScript for better type safety
+- Follow SvelteKit's recommended project structure
+- Implement proper loading and error states
+- Use proper meta tags for SEO
+
+Remember to regularly check the SvelteKit documentation for new performance features and optimizations as they become available.
