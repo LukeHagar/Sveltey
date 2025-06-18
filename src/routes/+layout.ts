@@ -40,6 +40,8 @@ export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
     data: { user },
   } = await supabase.auth.getUser()
 
+  const rootOpenGraphImage = `${url.origin}/main.png`
+
   const baseMetaTags = Object.freeze({
     title: 'Sveltey - SvelteKit SaaS Template',
     titleTemplate: '%s | Sveltey',
@@ -57,11 +59,11 @@ export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
       locale: 'en_US',
       images: [
         {
-          url: `${url.origin}/og-image.jpg`,
+          url: rootOpenGraphImage,
           width: 1200,
           height: 630,
           alt: 'Sveltey - SvelteKit SaaS Template',
-          type: 'image/jpeg'
+          type: 'image/png'
         }
       ]
     },
@@ -73,7 +75,7 @@ export const load: LayoutLoad = async ({ data, depends, fetch, url }) => {
       title: 'Sveltey - SvelteKit SaaS Template',
       description: 'A comprehensive, production-ready SaaS template built with Svelte 5, SvelteKit 2, Supabase, and Skeleton UI.',
       // OG Images can be easily created with https://ogimagemaker.com
-      image: `${url.origin}/og_image.png`,
+      image: rootOpenGraphImage,
       imageAlt: 'Sveltey - SvelteKit SaaS Template'
     },
     
