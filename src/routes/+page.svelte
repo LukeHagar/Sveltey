@@ -28,7 +28,7 @@
 					</a>
 				{:else}
 					<a
-						href="/auth/signup"
+						href="/auth/register"
 						class="btn btn-lg preset-filled-primary-500"
 						aria-label="Sign up for free account"
 					>
